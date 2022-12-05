@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import ButtonsGroup from "../../components/buttons/ButtonsGroup";
+import InputField from "../form/InputField";
+import FormModal from "../modal/FormModal";
 import Actions from "../student/Actions";
 import Avatar from "../student/Avatar";
 import StudentCard from "../student/Card";
@@ -22,6 +24,7 @@ function MainLayout() {
           <Actions />
         </>
       </StudentCard>
+      <FormModal title="Create Student"/>
     </SMainContent>
   );
 }
