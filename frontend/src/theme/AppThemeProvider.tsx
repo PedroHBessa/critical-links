@@ -50,7 +50,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    background-color: #090c0e;
+    background-color: #f5f5f5;
 
     &, * {
       box-sizing: border-box;

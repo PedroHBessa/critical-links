@@ -1,10 +1,9 @@
 import React from 'react';
+import MainLayout from '../components/dashboard/MainLayout';
 
 function Home() {
     return (
-        <div>
-            HOME
-        </div>
+      <MainLayout />
     );
 }
 
