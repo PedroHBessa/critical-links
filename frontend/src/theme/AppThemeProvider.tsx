@@ -73,7 +73,7 @@ const GlobalStyle = createGlobalStyle`
   .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     margin-bottom: 0.5rem;
-    font-family: Changa,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
     line-height: 1.1;
 }
@@ -81,8 +81,16 @@ a {
     text-decoration: none;
   }
   @font-face {
-    font-family: 'Changa';
-    src: url("/fonts/Changa-Regular.ttf") format('truetype');
+    font-family: 'Nunito Sans';
+    src: url("/fonts/NunitoSans-Regular.ttf") format('truetype');
+  },
+  @font-face {
+    font-family: 'Roboto';
+    src: url("/fonts/Roboto-Regular.ttf") format('truetype');
+  },
+  @font-face {
+    font-family: 'Open Sans';
+    src: url("/fonts/OpenSans-Regular.ttf") format('truetype');
   }
 `
 
@@ -147,7 +155,9 @@ const AppThemeProvider: React.FC<IAppThemeProviderProps> = ({ children }) => {
     WebFont.load({
       google: {
         families: [
-          'Changa',
+          'Nunito Sans',
+          'Roboto',
+          'Open Sans'
         ],
       },
     })

@@ -11,10 +11,10 @@ export interface IActions {
 const Actions: React.FC<IActions> = ({size}) => {
   return <SActions size={size}>
     <span id="edit">
-    <img src={require(`../../assets/edit-icon-${size}.png`)} />
+    <img src={require(`../../assets/icons/edit-icon-${size}.png`)} />
     </span>
     <span id="delete">
-    <img src={require(`../../assets/delete-icon-${size}.png`)} />
+    <img src={require(`../../assets/icons/delete-icon-${size}.png`)} />
     </span>
   </SActions>;
 };
