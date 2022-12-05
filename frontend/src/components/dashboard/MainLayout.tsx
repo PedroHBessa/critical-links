@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ButtonsGroup from "../../components/buttons/ButtonsGroup";
 import InputField from "../form/InputField";
 import FormModal from "../modal/FormModal";
+import WarningModal from "../modal/WarningModal";
 import Actions from "../student/Actions";
 import Avatar from "../student/Avatar";
 import StudentCard from "../student/Card";
@@ -25,6 +26,7 @@ function MainLayout() {
         </>
       </StudentCard>
       <FormModal title="Create Student"/>
+      <WarningModal title="Are you sure you want to delete?" />
     </SMainContent>
   );
 }

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import InputField from "./InputField";
 import { useForm } from "react-hook-form";
-import SubmitButton from "./FormButton";
 import { ErrorMessage } from "@hookform/error-message";
 import FormButton from "./FormButton";
 import SelectInputField from "./SelectInputField";
@@ -16,11 +15,8 @@ const MainForm: React.FC<IMainForm> = () => {
     handleSubmit,
   } = useForm();
   const [data, setData] = useState("");
-  console.log(data);
   return (
     <SMainForm onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
-      
-
       <InputField
         inputRef={{
           ...register("firstName", { required: "This is required." }),
