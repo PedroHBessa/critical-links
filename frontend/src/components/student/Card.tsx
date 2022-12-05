@@ -12,6 +12,10 @@ const Card: React.FC<ICard> = ({ children }) => {
 export default Card;
 
 const SCard = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 35.5px 20px;
   width: 425px;
   background-color: #fff;
   border-radius: 30px;

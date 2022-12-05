@@ -1,20 +1,44 @@
+import { StringifyOptions } from "querystring";
 import React from "react";
 import styled from "styled-components";
 
 export interface ITextContent {
+  fullname: string;
+  email: String;
+  id: string;
 }
 
-const TextContent: React.FC<ITextContent> = () => {
-  return <STextContent>
-
-  </STextContent>;
+const TextContent: React.FC<ITextContent> = ({ fullname, email, id }) => {
+  return (
+    <STextContent>
+      <div id="fullname">{fullname}</div>
+      <div id="email">{email}</div>
+      <div id="id">{`ID: ${id}`}</div>
+    </STextContent>
+  );
 };
 
 export default TextContent;
 
 const STextContent = styled.div`
-  width: 425px;
-  background-color: #fff;
-  border-radius: 30px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-size: 22px;
+  line-height: 30px;
+
+  text-align: left;
+  & #fullname {
+    font-weight: 700;
+    color: #272727;
+  }
+  & #email {
+    font-weight: 300;
+
+    color: #272727;
+  }
+  & #id {
+    font-weight: 200;
+
+    color: #9a9a9a;
+  }
 `;

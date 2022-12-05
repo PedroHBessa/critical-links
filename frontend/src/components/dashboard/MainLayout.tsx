@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import ButtonsGroup from "../../components/buttons/ButtonsGroup"
+import ButtonsGroup from "../../components/buttons/ButtonsGroup";
+import Actions from "../student/Actions";
 import Avatar from "../student/Avatar";
 import StudentCard from "../student/Card";
+import TextContent from "../student/TextContent";
 
 function MainLayout() {
   return (
@@ -10,7 +12,15 @@ function MainLayout() {
       <div>Student Manager</div>
       <ButtonsGroup />
       <StudentCard>
-        <Avatar />
+        <>
+          <Avatar />
+          <TextContent
+            fullname="Pedro Teixeira"
+            email={"pedro@live.com"}
+            id={"123456"}
+          />
+          <Actions />
+        </>
       </StudentCard>
     </SMainContent>
   );
