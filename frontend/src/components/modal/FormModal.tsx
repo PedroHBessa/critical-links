@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import MainForm from "../form/MainForm";
-import ModalButton from "./ModalButton";
 
 export interface IFormModal {
   title: string;
@@ -15,10 +14,6 @@ const FormModal: React.FC<IFormModal> = ({ title }) => {
         <div>X</div>
       </STitleModal>
       <MainForm />
-      <SModalButtonGroup>
-        <ModalButton text="cancel" />
-        <ModalButton text="create" />
-      </SModalButtonGroup>
     </SFormModal>
   );
 };
@@ -42,11 +37,6 @@ const SFormModal = styled.div`
     letter-spacing: 0.15px;
     color: rgba(0, 0, 0, 0.87);
   }
-`;
-
-const SModalButtonGroup = styled.div`
-  display: flex;
-  justify-content: flex-end;
 `;
 
 const STitleModal = styled.div`

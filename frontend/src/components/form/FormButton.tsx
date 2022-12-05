@@ -1,18 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import MainForm from "../form/MainForm";
+import MainForm from "./MainForm";
 
-export interface IModalButton {
+export interface IFormButton {
   text: string;
+  type: string;
 }
 
-const ModalButton: React.FC<IModalButton> = ({ text }) => {
-  return <SModalButton>{text}</SModalButton>;
+const FormButton: React.FC<IFormButton> = ({ text, type }) => {
+  return (
+      <SFormButton type={type} value={text} />
+  );
 };
 
-export default ModalButton;
+export default FormButton;
 
-const SModalButton = styled.span`
+const SFormButton = styled.input`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
@@ -23,5 +26,8 @@ const SModalButton = styled.span`
   color: #4e87f8;
   padding: 8px;
   margin: 8px;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
 `;
+

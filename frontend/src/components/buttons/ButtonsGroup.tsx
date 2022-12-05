@@ -9,8 +9,8 @@ const ButtonsGroup: React.FC<IButtonsGroup> = () => {
   return (
     <SButtonsGroup>
       {BUTTONS_PRESET &&
-        BUTTONS_PRESET.map((e) => {
-          return <Button text={e.text} />;
+        BUTTONS_PRESET.map((e, i) => {
+          return <Button key={i} text={e.text} />;
         })}
     </SButtonsGroup>
   );

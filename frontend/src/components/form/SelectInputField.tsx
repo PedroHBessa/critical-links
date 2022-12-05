@@ -2,28 +2,33 @@ import React from "react";
 import styled from "styled-components";
 import { UseFormRegister, FieldValues } from "react-hook-form";
 
-export interface IInputField {
+export interface ISelectInputField {
   placeholder: string;
   inputRef: Partial<UseFormRegister<FieldValues>>;
   errorMessage: JSX.Element;
 }
 
-const InputField: React.FC<IInputField> = ({
+const SelectInputField: React.FC<ISelectInputField> = ({
   placeholder,
   inputRef,
   errorMessage,
 }) => {
   return (
     <>
-      <SInputField {...inputRef} type={"text"} placeholder={placeholder} />
-      {errorMessage}
+      <SSelectInputField {...inputRef} placeholder={placeholder} >
+        <option value="" >Class Name</option>
+        <option value="A">Option A</option>
+        <option value="B">Option B</option>
+        {errorMessage}
+      </SSelectInputField>
+     
     </>
   );
 };
 
-export default InputField;
+export default SelectInputField;
 
-const SInputField = styled.input`
+const SSelectInputField = styled.select`
   width: 100%;
   font-family: "Roboto";
   font-style: normal;
