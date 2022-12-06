@@ -12,6 +12,9 @@ import { ModalContext } from "../../context/ModalContext";
 import useModal from "../modal/hooks/useModal";
 import CreateStudentForm from "../form/CreateStudentForm";
 import EditStudentForm from "../form/EditStudentForm";
+import CreateClassForm from "../form/CreateClassForm";
+import EditClassForm from "../form/EditClassForm";
+import DeleteClassConfirmation from "../classes/DeleteClassConfirmation";
 
 function MainLayout() {
   const ctx = useModal();
@@ -31,7 +34,7 @@ function MainLayout() {
               email={"pedro@live.com"}
               id={"123456"}
             />
-            <StudentActions size="reg" openModal={ctx.editStudent.setEditStudentModal}/>
+            <StudentActions size="reg" deleteModal={ctx.deleteStudentConfirmation.setDeleteStudentConfirmationModal} openModal={ctx.editStudent.setEditStudentModal}/>
           </>
         </StudentCard>
 
@@ -54,10 +57,28 @@ function MainLayout() {
           content={<ManageClass />}
         />
         <ModalContent
+          modal={ctx.createClass.createClassModal}
+          isModalOpen={ctx.createClass.setCreateClassModal}
+          title="Create Class"
+          content={<CreateClassForm />}
+        />
+        <ModalContent
+          modal={ctx.editClass.editClassModal}
+          isModalOpen={ctx.editClass.setEditClassModal}
+          title="Edit Class"
+          content={<EditClassForm />}
+        />
+        <ModalContent
           modal={ctx.deleteStudentConfirmation.deleteStudentConfirmationModal}
           isModalOpen={ctx.deleteStudentConfirmation.setDeleteStudentConfirmationModal}
           title="Delete Student"
           content={<DeleteStudentConfirmation title="Are you sure you want to delete?" />}
+        />
+        <ModalContent
+          modal={ctx.deleteClassConfirmation.deleteClassConfirmationModal}
+          isModalOpen={ctx.deleteClassConfirmation.setDeleteClassConfirmationModal}
+          title="Delete Class"
+          content={<DeleteClassConfirmation title="Are you sure you want to delete?" />}
         />
        
         

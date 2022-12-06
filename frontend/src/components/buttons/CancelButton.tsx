@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export interface ICancelButton {
-    closeModal: any
+    closeModal: (arg: boolean) => void
     text: string
 }
 
@@ -28,5 +28,9 @@ const SCancelButton = styled.input`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover{
+    background-color: #0000ff22;
+  }
 `;
 

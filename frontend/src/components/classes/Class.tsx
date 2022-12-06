@@ -6,11 +6,17 @@ import Actions from "../student/StudentActions";
 export interface IClass {}
 
 const Class: React.FC<IClass> = ({}) => {
-  const ctx = useContext(ModalContext)
+  const ctx = useContext(ModalContext);
   return (
     <SClass>
       <span>Classname</span>
-      <Actions size="sm" openModal={ctx.editClass.setEditClassModal} />
+      <Actions
+        size="sm"
+        openModal={ctx.editClass.setEditClassModal}
+        deleteModal={
+          ctx.deleteClassConfirmation.setDeleteClassConfirmationModal
+        }
+      />
     </SClass>
   );
 };

@@ -4,11 +4,11 @@ import ModalButton from "../modal/ModalButton";
 import { ModalContext } from "../../context/ModalContext";
 import Modal from "../modal/Modal";
 
-export interface IDeleteStudentConfirmation {
+export interface IDeleteClassConfirmation {
   title: string;
 }
 
-const DeleteStudentConfirmation: React.FC<IDeleteStudentConfirmation> = ({ title }) => {
+const DeleteClassConfirmation: React.FC<IDeleteClassConfirmation> = ({ title }) => {
   const { deleteConfirmation } = useContext(ModalContext);
   return (
     <>
@@ -27,9 +27,15 @@ const DeleteStudentConfirmation: React.FC<IDeleteStudentConfirmation> = ({ title
   );
 };
 
-export default DeleteStudentConfirmation;
+export default DeleteClassConfirmation;
 
-const SDeleteStudentConfirmation = styled.div`
+const SDeleteClassConfirmation = styled.div`
+  width: 459px;
+  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 24px;
+  background-color: #fff;
 
   & .modal-title {
     font-family: "Roboto";
@@ -70,8 +76,4 @@ const SModalButton = styled.span`
   background-color: transparent;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s;
-  &:hover{
-    background-color: #0000ff22;
-  }
 `;

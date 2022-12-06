@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { ModalContext } from "../../context/ModalContext";
 import CancelButton from "../buttons/CancelButton";
 import ClassList from "./ClassList";
-import Modal from "../modal/Modal";
-import ModalButton from "../modal/ModalButton";
 
 export interface IManageClass {
 }

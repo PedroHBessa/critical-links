@@ -28,5 +28,9 @@ const SFormButton = styled.input`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover{
+    background-color: #0000ff22;
+  }
 `;
 

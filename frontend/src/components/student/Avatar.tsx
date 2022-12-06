@@ -6,7 +6,7 @@ export interface IAvatar {}
 const Avatar: React.FC<IAvatar> = ({}) => {
   return (
     <SAvatar>
-      <img src="/" />
+      <img src="https://joeschmoe.io/api/v1/male/random" />
     </SAvatar>
   );
 };

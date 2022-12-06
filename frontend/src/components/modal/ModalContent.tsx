@@ -1,5 +1,6 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import styled from "styled-components";
+import CloseButton from "../../utils/widgets/CloseButton";
 import Modal from "./Modal";
 
 export interface IModalContent {
@@ -25,7 +26,7 @@ const ModalContent: React.FC<IModalContent> = ({
               isModalOpen(false);
             }}
           >
-            X
+            <CloseButton />
           </div>
         </STitleModal>
         {content}

@@ -7,10 +7,15 @@ type Size = "sm" | "reg";
 
 export interface IStudentActions {
   size: Size;
-  openModal: (arg: boolean) => void
+  openModal: (arg: boolean) => void;
+  deleteModal: (arg: boolean) => void;
 }
 
-const StudentActions: React.FC<IStudentActions> = ({ size, openModal }) => {
+const StudentActions: React.FC<IStudentActions> = ({
+  size,
+  openModal,
+  deleteModal,
+}) => {
   const ctx = useContext(ModalContext);
   return (
     <SStudentActions size={size}>
@@ -25,10 +30,10 @@ const StudentActions: React.FC<IStudentActions> = ({ size, openModal }) => {
       <span
         id="delete"
         onClick={() => {
-          ctx.deleteStudentConfirmation.setDeleteStudentConfirmationModal(true);
+          deleteModal(true);
         }}
       >
-        <img src={require(`../../assets/icons/delete-icon-${size}.png`)} />
+        <img width={21} height={26} src={require(`../../assets/icons/delete-icon-${size}.png`)} />
       </span>
     </SStudentActions>
   );
@@ -40,8 +45,27 @@ const SStudentActions = styled.div<{ size: string }>`
   display: flex;
   & {
     span {
-      margin: ${(props) => (props.size === "reg" ? "0 7.5px" : "0 -8px")};
+      display: flex;
+      align-items: center;
+      width: 100%;
       cursor: pointer;
+      transition: background-color 0.3s;
+    }
+  }
+  & #edit {
+    border-radius: 50px;
+    padding: 10px;
+    align-items: center;
+    &:hover {
+      background-color: #0000ff22;
+    }
+  }
+  & #delete {
+    border-radius: 50px;
+    padding: 12px;
+    align-items: center;
+    &:hover {
+      background-color: #ff000021;
     }
   }
 `;
