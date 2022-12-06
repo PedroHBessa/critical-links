@@ -1,20 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-export interface IFormButton {
-  text: string
-  type: string
+export interface ICancelButton {
+    closeModal: any
+    text: string
 }
 
-const FormButton: React.FC<IFormButton> = ({ text, type }) => {
+const CancelButton: React.FC<ICancelButton> = ({closeModal, text}) => {
   return (
-      <SFormButton type={type} value={text} />
+      <SCancelButton onClick={()=>{closeModal(false)}} type={"reset"} value={text} />
   );
 };
 
-export default FormButton;
+export default CancelButton;
 
-const SFormButton = styled.input`
+const SCancelButton = styled.input`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;

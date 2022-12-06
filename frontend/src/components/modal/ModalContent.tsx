@@ -1,32 +1,42 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import MainForm from "../form/MainForm";
 import Modal from "./Modal";
-import { ModalContext } from "../../context/ModalContext";
 
-export interface IFormModal {
+export interface IModalContent {
   title: string;
+  content: JSX.Element;
+  modal: boolean;
+  isModalOpen: (arg: boolean) => void;
 }
 
-const FormModal: React.FC<IFormModal> = ({ title }) => {
-  const ctx = useContext(ModalContext)
-  
+const ModalContent: React.FC<IModalContent> = ({
+  title,
+  content,
+  modal,
+  isModalOpen,
+}) => {
   return (
-    <Modal show={ctx.createStudent.createStudentModal}>
-      <SFormModal>
+    <Modal show={modal}>
+      <SModalContent>
         <STitleModal>
           <div className="modal-title">{title}</div>
-          <div onClick={()=>{ctx.createStudent.setCreateStudentModal(false)}}>X</div>
+          <div
+            onClick={() => {
+              isModalOpen(false);
+            }}
+          >
+            X
+          </div>
         </STitleModal>
-        <MainForm />
-      </SFormModal>
+        {content}
+      </SModalContent>
     </Modal>
   );
 };
 
-export default FormModal;
+export default ModalContent;
 
-const SFormModal = styled.div`
+const SModalContent = styled.div`
   width: 381px;
   background-color: #fff;
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),

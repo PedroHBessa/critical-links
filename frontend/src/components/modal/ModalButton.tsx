@@ -6,12 +6,7 @@ export interface IModalButton {
 }
 
 const ModalButton: React.FC<IModalButton> = ({ text }) => {
-  return (
-      <SModalButton>
-        {text
-        }
-      </SModalButton>
-  )
+  return <SModalButton>{text}</SModalButton>;
 };
 
 export default ModalButton;
@@ -31,4 +26,3 @@ const SModalButton = styled.span`
   border: none;
   cursor: pointer;
 `;
-

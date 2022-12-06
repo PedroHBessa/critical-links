@@ -1,31 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import MainForm from "../form/MainForm";
-import ModalButton from "./ModalButton";
+import { ModalContext } from "../../context/ModalContext";
+import CancelButton from "../buttons/CancelButton";
+import ClassList from "./ClassList";
+import Modal from "../modal/Modal";
+import ModalButton from "../modal/ModalButton";
 
-export interface IWarningModal {
-  title: string;
+export interface IManageClass {
 }
 
-const WarningModal: React.FC<IWarningModal> = ({ title }) => {
+const ManageClass: React.FC<IManageClass> = ({ }) => {
+  const { manageClass } = useContext(ModalContext);
   return (
-    <SWarningModal>
-      <STitleModal>
-        <div className="modal-title">{title}</div>
-        <div>X</div>
-      </STitleModal>
-      <SButtonWrapper>
-        <ModalButton text="no" />
-        <ModalButton text="yes" />
-      </SButtonWrapper>
-    </SWarningModal>
+    <>
+        <ClassList />
+        <SButtonWrapper>
+          <CancelButton
+            closeModal={manageClass.setManageClassModal}
+            text={"Close"}
+          />
+        </SButtonWrapper>
+        </>
   );
 };
 
-export default WarningModal;
+export default ManageClass;
 
-const SWarningModal = styled.div`
-  width: 459px;
+const SManageClassModal = styled.div`
+  width: 284px;
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
     0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
@@ -49,7 +51,6 @@ const STitleModal = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-
 
 const SButtonWrapper = styled.div`
   display: flex;

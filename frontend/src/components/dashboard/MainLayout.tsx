@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import ButtonsGroup from "../../components/buttons/ButtonsGroup";
-import FormModal from "../modal/FormModal";
-import ManageClassModal from "../modal/ManageClassModal";
-import WarningModal from "../modal/WarningModal";
-import Actions from "../student/Actions";
+import ModalContent from "../modal/ModalContent";
+import ManageClass from "../classes/ManageClass";
+import DeleteStudentConfirmation from "../student/DeleteStudentConfirmation";
+import StudentActions from "../student/StudentActions";
 import Avatar from "../student/Avatar";
 import StudentCard from "../student/Card";
 import TextContent from "../student/TextContent";
 import { ModalContext } from "../../context/ModalContext";
-import useModal from  '../modal/context/modals'
+import useModal from "../modal/hooks/useModal";
+import CreateStudentForm from "../form/CreateStudentForm";
+import EditStudentForm from "../form/EditStudentForm";
 
 function MainLayout() {
-  
+  const ctx = useModal();
   return (
-    <ModalContext.Provider value={useModal()}>
+    <ModalContext.Provider value={ctx}>
       <SMainContent>
         <SHeader>
           <div className="title">Student Manager</div>
@@ -29,13 +31,36 @@ function MainLayout() {
               email={"pedro@live.com"}
               id={"123456"}
             />
-            <Actions size="reg" />
+            <StudentActions size="reg" openModal={ctx.editStudent.setEditStudentModal}/>
           </>
         </StudentCard>
 
-        <FormModal title="Create Student" />
-        <WarningModal title="Are you sure you want to delete?" />
-        <ManageClassModal title="Manage Classes" />
+        <ModalContent
+          modal={ctx.editStudent.editStudentModal}
+          isModalOpen={ctx.editStudent.setEditStudentModal}
+          title="Edit Student"
+          content={<EditStudentForm />}
+        />
+        <ModalContent
+          modal={ctx.createStudent.createStudentModal}
+          isModalOpen={ctx.createStudent.setCreateStudentModal}
+          title="Create Student"
+          content={<CreateStudentForm />}
+        />
+        <ModalContent
+          modal={ctx.manageClass.manageClassModal}
+          isModalOpen={ctx.manageClass.setManageClassModal}
+          title="Manage Classes"
+          content={<ManageClass />}
+        />
+        <ModalContent
+          modal={ctx.deleteStudentConfirmation.deleteStudentConfirmationModal}
+          isModalOpen={ctx.deleteStudentConfirmation.setDeleteStudentConfirmationModal}
+          title="Delete Student"
+          content={<DeleteStudentConfirmation title="Are you sure you want to delete?" />}
+        />
+       
+        
       </SMainContent>
     </ModalContext.Provider>
   );

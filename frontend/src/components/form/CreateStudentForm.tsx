@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import InputField from "./InputField";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import FormButton from "./FormButton";
 import SelectInputField from "./SelectInputField";
+import CancelButton from "../buttons/CancelButton";
+import { ModalContext } from "../../context/ModalContext";
 
-export interface IMainForm {}
+export interface ICreateStudentForm {}
 
-const MainForm: React.FC<IMainForm> = () => {
+const CreateStudentForm: React.FC<ICreateStudentForm> = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
   const [data, setData] = useState("");
+
+  const {createStudent} = useContext(ModalContext)
   return (
-    <SMainForm onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+    <SCreateStudentForm onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
       <InputField
         inputRef={{
           ...register("firstName", { required: "This is required." }),
@@ -61,16 +65,16 @@ const MainForm: React.FC<IMainForm> = () => {
       />
 
       <SButtonWrapper>
-        <FormButton text={"cancel"} type={"reset"} />
+        <CancelButton closeModal={createStudent.setCreateStudentModal} text={"Cancel"} />
         <FormButton text={"Create"} type={"submit"} />
       </SButtonWrapper>
-    </SMainForm>
+    </SCreateStudentForm>
   );
 };
 
-export default MainForm;
+export default CreateStudentForm;
 
-const SMainForm = styled.form``;
+const SCreateStudentForm = styled.form``;
 
 const SButtonWrapper = styled.div`
   display: flex;

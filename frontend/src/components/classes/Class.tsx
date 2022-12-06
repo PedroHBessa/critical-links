@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import Actions from "../student/Actions";
+import { ModalContext } from "../../context/ModalContext";
+import Actions from "../student/StudentActions";
 
 export interface IClass {}
 
 const Class: React.FC<IClass> = ({}) => {
+  const ctx = useContext(ModalContext)
   return (
     <SClass>
       <span>Classname</span>
-      <Actions size="sm" />
+      <Actions size="sm" openModal={ctx.editClass.setEditClassModal} />
     </SClass>
   );
 };
