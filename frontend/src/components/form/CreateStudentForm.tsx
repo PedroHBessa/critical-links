@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import InputField from "./InputField";
 import { useForm } from "react-hook-form";
@@ -7,6 +7,8 @@ import FormButton from "./FormButton";
 import SelectInputField from "./SelectInputField";
 import CancelButton from "../buttons/CancelButton";
 import { ModalContext } from "../../context/ModalContext";
+import axios from "../../services/axios";
+import { useNavigate } from "react-router-dom";
 
 export interface ICreateStudentForm {}
 
@@ -16,20 +18,26 @@ const CreateStudentForm: React.FC<ICreateStudentForm> = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [data, setData] = useState("");
 
-  const {createStudent} = useContext(ModalContext)
+  const { createStudent } = useContext(ModalContext);
+
+  const createStudents = (data: any) => {
+    axios.post("/students", data);
+    createStudent.toggleCreateStudentModal(false);
+    window.location.reload();
+  };
+
   return (
-    <SCreateStudentForm onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+    <SCreateStudentForm onSubmit={handleSubmit((data) => createStudents(data))}>
       <InputField
         inputRef={{
-          ...register("firstName", { required: "This is required." }),
+          ...register("first_name", { required: "This is required." }),
         }}
         errorMessage={
           <ErrorMessage
             className="error-message"
             errors={errors}
-            name="firstName"
+            name="first_name"
             as="p"
           />
         }
@@ -37,9 +45,9 @@ const CreateStudentForm: React.FC<ICreateStudentForm> = () => {
       />
       <InputField
         inputRef={{
-          ...register("lastName", { required: "This is required." }),
+          ...register("last_name", { required: "This is required." }),
         }}
-        errorMessage={<ErrorMessage errors={errors} name="lastName" as="p" />}
+        errorMessage={<ErrorMessage errors={errors} name="last_name" as="p" />}
         placeholder="Last Name"
       />
       <InputField
@@ -51,21 +59,24 @@ const CreateStudentForm: React.FC<ICreateStudentForm> = () => {
       />
       <InputField
         inputRef={{
-          ...register("studentId", { required: "This is required." }),
+          ...register("student_id", { required: "This is required." }),
         }}
-        errorMessage={<ErrorMessage errors={errors} name="studentId" as="p" />}
+        errorMessage={<ErrorMessage errors={errors} name="student_id" as="p" />}
         placeholder="Student ID"
       />
       <SelectInputField
         inputRef={{
-          ...register("className", { required: "This is required." }),
+          ...register("class_name", { required: "This is required." }),
         }}
-        errorMessage={<ErrorMessage errors={errors} name="className" as="p" />}
+        errorMessage={<ErrorMessage errors={errors} name="class_name" as="p" />}
         placeholder="Class Name"
       />
 
       <SButtonWrapper>
-        <CancelButton closeModal={createStudent.setCreateStudentModal} text={"Cancel"} />
+        <CancelButton
+          closeModal={createStudent.toggleCreateStudentModal}
+          text={"Cancel"}
+        />
         <FormButton text={"Create"} type={"submit"} />
       </SButtonWrapper>
     </SCreateStudentForm>

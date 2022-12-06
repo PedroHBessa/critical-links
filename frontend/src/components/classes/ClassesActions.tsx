@@ -7,11 +7,15 @@ type Size = "sm" | "reg";
 
 export interface IClassesActions {
   size: Size;
-  openModal: (arg: boolean) => void
+  openModal: (arg: boolean) => void;
+  deleteModal: (arg: boolean) => void;
 }
 
-const ClassesActions: React.FC<IClassesActions> = ({ size, openModal }) => {
-  const ctx = useContext(ModalContext);
+const ClassesActions: React.FC<IClassesActions> = ({
+  size,
+  openModal,
+  deleteModal,
+}) => {
   return (
     <SClassesActions size={size}>
       <span
@@ -25,7 +29,7 @@ const ClassesActions: React.FC<IClassesActions> = ({ size, openModal }) => {
       <span
         id="delete"
         onClick={() => {
-          ctx.deleteConfirmation.setDeleteConfirmationModal(true);
+          deleteModal(true);
         }}
       >
         <img src={require(`../../assets/icons/delete-icon-${size}.png`)} />

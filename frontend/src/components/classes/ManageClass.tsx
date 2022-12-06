@@ -14,7 +14,7 @@ const ManageClass: React.FC<IManageClass> = ({ }) => {
         <ClassList />
         <SButtonWrapper>
           <CancelButton
-            closeModal={manageClass.setManageClassModal}
+            closeModal={manageClass.toggleManageClassModal}
             text={"Close"}
           />
         </SButtonWrapper>

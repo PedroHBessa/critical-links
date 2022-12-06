@@ -1,27 +1,40 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import ModalButton from "../modal/ModalButton";
 import { ModalContext } from "../../context/ModalContext";
-import Modal from "../modal/Modal";
+import axios from "../../services/axios";
 
 export interface IDeleteStudentConfirmation {
   title: string;
 }
 
-const DeleteStudentConfirmation: React.FC<IDeleteStudentConfirmation> = ({ title }) => {
-  const { deleteConfirmation } = useContext(ModalContext);
+const DeleteStudentConfirmation: React.FC<IDeleteStudentConfirmation> = ({
+  title,
+}) => {
+  const { deleteStudentConfirmation } = useContext(ModalContext);
+  const deleteStudent = async (id: string) => {
+    await axios.delete(`students/${id}`);
+    deleteStudentConfirmation.toggleDeleteStudentConfirmationModal(false);
+    window.location.reload();
+  };
   return (
     <>
       <div className="modal-title">{title}</div>
       <SButtonWrapper>
         <SModalButton
           onClick={() => {
-            deleteConfirmation.setDeleteConfirmationModal(false);
+            deleteStudentConfirmation.toggleDeleteStudentConfirmationModal(false);
           }}
         >
           No
         </SModalButton>
-        <SModalButton>Yes</SModalButton>;
+        <SModalButton
+          onClick={() => {
+            deleteStudent(deleteStudentConfirmation.deleteStudentId);
+          }}
+        >
+          Yes
+        </SModalButton>
+        ;
       </SButtonWrapper>
     </>
   );
@@ -30,7 +43,6 @@ const DeleteStudentConfirmation: React.FC<IDeleteStudentConfirmation> = ({ title
 export default DeleteStudentConfirmation;
 
 const SDeleteStudentConfirmation = styled.div`
-
   & .modal-title {
     font-family: "Roboto";
     font-style: normal;
@@ -71,7 +83,7 @@ const SModalButton = styled.span`
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
-  &:hover{
+  &:hover {
     background-color: #0000ff22;
   }
 `;

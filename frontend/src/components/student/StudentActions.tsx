@@ -9,14 +9,20 @@ export interface IStudentActions {
   size: Size;
   openModal: (arg: boolean) => void;
   deleteModal: (arg: boolean) => void;
+  id: string;
 }
 
 const StudentActions: React.FC<IStudentActions> = ({
   size,
   openModal,
   deleteModal,
+  id,
 }) => {
-  const ctx = useContext(ModalContext);
+  const { deleteStudentConfirmation } = useContext(ModalContext);
+  const openModalAndPassId = () => {
+    deleteModal(true);
+    deleteStudentConfirmation.setDeleteStudentId(id);
+  };
   return (
     <SStudentActions size={size}>
       <span
@@ -30,10 +36,14 @@ const StudentActions: React.FC<IStudentActions> = ({
       <span
         id="delete"
         onClick={() => {
-          deleteModal(true);
+          openModalAndPassId();
         }}
       >
-        <img width={21} height={26} src={require(`../../assets/icons/delete-icon-${size}.png`)} />
+        <img
+          width={21}
+          height={26}
+          src={require(`../../assets/icons/delete-icon-${size}.png`)}
+        />
       </span>
     </SStudentActions>
   );

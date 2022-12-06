@@ -45,7 +45,7 @@ const CreateClassForm: React.FC<ICreateClassForm> = () => {
       
 
       <SButtonWrapper>
-        <CancelButton closeModal={createClass.setCreateClassModal} text={"Cancel"} />
+        <CancelButton closeModal={createClass.toggleCreateClassModal} text={"Cancel"} />
         <FormButton text={"Create"} type={"submit"} />
       </SButtonWrapper>
     </SCreateClassForm>

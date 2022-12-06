@@ -6,7 +6,7 @@ import ManageClass from "../classes/ManageClass";
 import DeleteStudentConfirmation from "../student/DeleteStudentConfirmation";
 import StudentActions from "../student/StudentActions";
 import Avatar from "../student/Avatar";
-import StudentCard from "../student/Card";
+import StudentCard from "../student/StudentCard";
 import TextContent from "../student/TextContent";
 import { ModalContext } from "../../context/ModalContext";
 import useModal from "../modal/hooks/useModal";
@@ -15,6 +15,7 @@ import EditStudentForm from "../form/EditStudentForm";
 import CreateClassForm from "../form/CreateClassForm";
 import EditClassForm from "../form/EditClassForm";
 import DeleteClassConfirmation from "../classes/DeleteClassConfirmation";
+import StudentSection from "../student/StudentSection";
 
 function MainLayout() {
   const ctx = useModal();
@@ -26,62 +27,58 @@ function MainLayout() {
           <ButtonsGroup />
         </SHeader>
 
-        <StudentCard>
-          <>
-            <Avatar />
-            <TextContent
-              fullname="Pedro Teixeira"
-              email={"pedro@live.com"}
-              id={"123456"}
-            />
-            <StudentActions size="reg" deleteModal={ctx.deleteStudentConfirmation.setDeleteStudentConfirmationModal} openModal={ctx.editStudent.setEditStudentModal}/>
-          </>
-        </StudentCard>
+        <StudentSection />
 
         <ModalContent
-          modal={ctx.editStudent.editStudentModal}
-          isModalOpen={ctx.editStudent.setEditStudentModal}
+          modal={ctx.editStudent.editStudentModalIsOpen}
+          isModalOpen={ctx.editStudent.toggleEditStudentModal}
           title="Edit Student"
           content={<EditStudentForm />}
         />
         <ModalContent
-          modal={ctx.createStudent.createStudentModal}
-          isModalOpen={ctx.createStudent.setCreateStudentModal}
+          modal={ctx.createStudent.createStudentModalIsOpen}
+          isModalOpen={ctx.createStudent.toggleCreateStudentModal}
           title="Create Student"
           content={<CreateStudentForm />}
         />
         <ModalContent
-          modal={ctx.manageClass.manageClassModal}
-          isModalOpen={ctx.manageClass.setManageClassModal}
+          modal={ctx.manageClass.manageClassModalIsOpen}
+          isModalOpen={ctx.manageClass.toggleManageClassModal}
           title="Manage Classes"
           content={<ManageClass />}
         />
         <ModalContent
-          modal={ctx.createClass.createClassModal}
-          isModalOpen={ctx.createClass.setCreateClassModal}
+          modal={ctx.createClass.createClassModalIsOpen}
+          isModalOpen={ctx.createClass.toggleCreateClassModal}
           title="Create Class"
           content={<CreateClassForm />}
         />
         <ModalContent
-          modal={ctx.editClass.editClassModal}
-          isModalOpen={ctx.editClass.setEditClassModal}
+          modal={ctx.editClass.editClassModalIsOpen}
+          isModalOpen={ctx.editClass.toggleEditClassModal}
           title="Edit Class"
           content={<EditClassForm />}
         />
         <ModalContent
-          modal={ctx.deleteStudentConfirmation.deleteStudentConfirmationModal}
-          isModalOpen={ctx.deleteStudentConfirmation.setDeleteStudentConfirmationModal}
+          modal={ctx.deleteStudentConfirmation.deleteStudentConfirmationModalIsOpen}
+          isModalOpen={
+            ctx.deleteStudentConfirmation.toggleDeleteStudentConfirmationModal
+          }
           title="Delete Student"
-          content={<DeleteStudentConfirmation title="Are you sure you want to delete?" />}
+          content={
+            <DeleteStudentConfirmation title="Are you sure you want to delete?" />
+          }
         />
         <ModalContent
-          modal={ctx.deleteClassConfirmation.deleteClassConfirmationModal}
-          isModalOpen={ctx.deleteClassConfirmation.setDeleteClassConfirmationModal}
+          modal={ctx.deleteClassConfirmation.deleteClassConfirmationModalIsOpen}
+          isModalOpen={
+            ctx.deleteClassConfirmation.toggleDeleteClassConfirmationModal
+          }
           title="Delete Class"
-          content={<DeleteClassConfirmation title="Are you sure you want to delete?" />}
+          content={
+            <DeleteClassConfirmation title="Are you sure you want to delete?" />
+          }
         />
-       
-        
       </SMainContent>
     </ModalContext.Provider>
   );

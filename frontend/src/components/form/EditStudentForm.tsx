@@ -65,7 +65,7 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
       />
 
       <SButtonWrapper>
-        <CancelButton closeModal={editStudent.setEditStudentModal} text={"Cancel"} />
+        <CancelButton closeModal={editStudent.toggleEditStudentModalIsOpen} text={"Cancel"} />
         <FormButton text={"Edit"} type={"submit"} />
       </SButtonWrapper>
     </SEditStudentForm>

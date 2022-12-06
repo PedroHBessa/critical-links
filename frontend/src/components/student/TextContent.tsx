@@ -23,7 +23,7 @@ export default TextContent;
 const STextContent = styled.div`
   font-family: "Nunito Sans";
   font-style: normal;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 30px;
 
   text-align: left;

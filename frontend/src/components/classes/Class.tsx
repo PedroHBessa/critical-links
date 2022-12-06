@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { ModalContext } from "../../context/ModalContext";
-import Actions from "../student/StudentActions";
+import ClassActions from "../classes/ClassesActions";
 
 export interface IClass {}
 
@@ -10,11 +10,11 @@ const Class: React.FC<IClass> = ({}) => {
   return (
     <SClass>
       <span>Classname</span>
-      <Actions
+      <ClassActions
         size="sm"
-        openModal={ctx.editClass.setEditClassModal}
+        openModal={ctx.editClass.toggleEditClassModal}
         deleteModal={
-          ctx.deleteClassConfirmation.setDeleteClassConfirmationModal
+          ctx.deleteClassConfirmation.toggleDeleteClassConfirmationModal
         }
       />
     </SClass>

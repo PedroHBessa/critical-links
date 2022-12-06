@@ -1,41 +1,44 @@
 import { useState } from "react";
 
 const useModal = () => {
-  const [createStudentModal, setCreateStudentModal] = useState(false);
-  const [editStudentModal, setEditStudentModal] = useState(false);
-  const [manageClassModal, setManageClassModal] = useState(false);
-  const [createClassModal, setCreateClassModal] = useState(false);
-  const [editClassModal, setEditClassModal] = useState(false);
-  const [deleteStudentConfirmationModal, setDeleteStudentConfirmationModal] = useState(false);
-  const [deleteClassConfirmationModal, setDeleteClassConfirmationModal] = useState(false);
+  const [createStudentModalIsOpen, toggleCreateStudentModal] = useState(false);
+  const [editStudentModalIsOpen, toggleEditStudentModal] = useState(false);
+  const [manageClassModalIsOpen, toggleManageClassModal] = useState(false);
+  const [createClassModalIsOpen, toggleCreateClassModal] = useState(false);
+  const [editClassModalIsOpen, toggleEditClassModal] = useState(false);
+  const [deleteStudentConfirmationModalIsOpen, toggleDeleteStudentConfirmationModal] = useState(false);
+  const [deleteClassConfirmationModalIsOpen, toggleDeleteClassConfirmationModal] = useState(false);
+  const [deleteStudentId, setDeleteStudentId] = useState('')
   const modals = {
     createStudent: {
-      createStudentModal,
-      setCreateStudentModal,
+      createStudentModalIsOpen,
+      toggleCreateStudentModal,
     },
     editStudent: {
-      editStudentModal,
-      setEditStudentModal,
+      editStudentModalIsOpen,
+      toggleEditStudentModal,
     },
     manageClass: {
-      manageClassModal,
-      setManageClassModal,
+      manageClassModalIsOpen,
+      toggleManageClassModal,
     },
     createClass:{
-      createClassModal,
-      setCreateClassModal
+      createClassModalIsOpen,
+      toggleCreateClassModal
     },
     editClass: {
-      editClassModal,
-      setEditClassModal,
+      editClassModalIsOpen,
+      toggleEditClassModal,
     },
     deleteStudentConfirmation: {
-      deleteStudentConfirmationModal,
-      setDeleteStudentConfirmationModal,
+      deleteStudentConfirmationModalIsOpen,
+      toggleDeleteStudentConfirmationModal,
+      deleteStudentId,
+      setDeleteStudentId
     },
     deleteClassConfirmation: {
-      deleteClassConfirmationModal,
-      setDeleteClassConfirmationModal,
+      deleteClassConfirmationModalIsOpen,
+      toggleDeleteClassConfirmationModal,
     },
   };
   return modals;

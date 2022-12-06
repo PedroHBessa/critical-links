@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { generateHashFromEmail } from "../../services/hashGenerator"
 
-export interface IAvatar {}
+export interface IAvatar {
+  email: string
+}
 
-const Avatar: React.FC<IAvatar> = ({}) => {
+const Avatar: React.FC<IAvatar> = ({email}) => {
+  const hash = generateHashFromEmail(email)
   return (
     <SAvatar>
-      <img src="https://joeschmoe.io/api/v1/male/random" />
+      <img src={`https://avatars.dicebear.com/api/male/${hash}.svg`} />
     </SAvatar>
   );
 };
