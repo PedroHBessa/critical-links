@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import MainForm from "../form/MainForm";
+import Modal from "./Modal";
+import { ModalContext } from "../../context/ModalContext";
 
 export interface IFormModal {
   title: string;
 }
 
 const FormModal: React.FC<IFormModal> = ({ title }) => {
+  const ctx = useContext(ModalContext)
+  
   return (
-    <SFormModal>
-      <STitleModal>
-        <div className="modal-title">{title}</div>
-        <div>X</div>
-      </STitleModal>
-      <MainForm />
-    </SFormModal>
+    <Modal show={ctx.createStudent.createStudentModal}>
+      <SFormModal>
+        <STitleModal>
+          <div className="modal-title">{title}</div>
+          <div onClick={()=>{ctx.createStudent.setCreateStudentModal(false)}}>X</div>
+        </STitleModal>
+        <MainForm />
+      </SFormModal>
+    </Modal>
   );
 };
 

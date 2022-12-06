@@ -10,7 +10,7 @@ const ButtonsGroup: React.FC<IButtonsGroup> = () => {
     <SButtonsGroup>
       {BUTTONS_PRESET &&
         BUTTONS_PRESET.map((e, i) => {
-          return <Button key={i} text={e.text} />;
+          return <Button key={i} text={e.text} type={e.type} />;
         })}
     </SButtonsGroup>
   );

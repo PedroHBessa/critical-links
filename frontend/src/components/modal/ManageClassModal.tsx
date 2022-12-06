@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { ModalContext } from "../../context/ModalContext";
 import ClassList from "../classes/ClassList";
+import Modal from "./Modal";
 import ModalButton from "./ModalButton";
 
 export interface IManageClassModal {
@@ -8,17 +10,20 @@ export interface IManageClassModal {
 }
 
 const ManageClassModal: React.FC<IManageClassModal> = ({ title }) => {
+  const ctx = useContext(ModalContext)
   return (
+    <Modal show={ctx.manageClass.manageClassModal}>
     <SManageClassModal>
       <STitleModal>
         <div className="modal-title">{title}</div>
-        <div>X</div>
+        <div onClick={()=>{ctx.manageClass.setManageClassModal(false)}}>X</div>
       </STitleModal>
       <ClassList />
       <SButtonWrapper>
         <ModalButton text="close" />
       </SButtonWrapper>
     </SManageClassModal>
+    </Modal>
   );
 };
 

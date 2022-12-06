@@ -1,5 +1,5 @@
 export const BUTTONS_PRESET = [
-    { text: "Create Student" },
-    { text: "Create Class" },
-    { text: "Manage Classes" },
+    { text: "Create Student", type: 0 },
+    { text: "Create Class", type: 1 },
+    { text: "Manage Classes", type: 2 },
   ];
