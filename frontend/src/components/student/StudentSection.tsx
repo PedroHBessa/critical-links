@@ -13,7 +13,6 @@ const StudentSection: React.FC<IStudentSection> = ({}) => {
   useEffect(() => {
     const getStudents = async () => {
       const response = await axios.get("/students");
-      console.log(response.data)
       setStudents(response.data);
     };
     getStudents();

@@ -18,10 +18,13 @@ const CreateClassForm: React.FC<ICreateClassForm> = () => {
   } = useForm();
   const [data, setData] = useState("");
 
-  const {createClass} = useContext(ModalContext)
+  const { createClass } = useContext(ModalContext);
   return (
-    <SCreateClassForm onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+    <SCreateClassForm
+      onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
+    >
       <InputField
+        typeForm="create"
         inputRef={{
           ...register("name", { required: "This is required." }),
         }}
@@ -36,16 +39,19 @@ const CreateClassForm: React.FC<ICreateClassForm> = () => {
         placeholder="Name"
       />
       <InputField
+        typeForm="create"
         inputRef={{
           ...register("year", { required: "This is required." }),
         }}
         errorMessage={<ErrorMessage errors={errors} name="year" as="p" />}
         placeholder="Year"
       />
-      
 
       <SButtonWrapper>
-        <CancelButton closeModal={createClass.toggleCreateClassModal} text={"Cancel"} />
+        <CancelButton
+          closeModal={createClass.toggleCreateClassModal}
+          text={"Cancel"}
+        />
         <FormButton text={"Create"} type={"submit"} />
       </SButtonWrapper>
     </SCreateClassForm>

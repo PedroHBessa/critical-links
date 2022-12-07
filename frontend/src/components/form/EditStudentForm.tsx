@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import InputField from "./InputField";
 import { useForm } from "react-hook-form";
@@ -7,29 +7,53 @@ import FormButton from "./FormButton";
 import SelectInputField from "./SelectInputField";
 import CancelButton from "../buttons/CancelButton";
 import { ModalContext } from "../../context/ModalContext";
+import axios from "../../services/axios";
 
 export interface IEditStudentForm {}
 
 const EditStudentForm: React.FC<IEditStudentForm> = () => {
+  const [data, setData] = useState();
+  const { editStudent } = useContext(ModalContext);
+
+  useEffect(() => {
+    const getStudent = async () => {
+      const response = await axios.get(
+        `/students/${editStudent.editStudentId}`
+      );
+      setData(response.data);
+    };
+    getStudent();
+  }, []);
+
+  const updateStudents = (data: any) => {
+    axios.patch(`/students/${editStudent.editStudentId}`, data);
+    editStudent.toggleCreateStudentModal(false);
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    reset(data);
+  }, [data]);
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
-  const [data, setData] = useState("");
+    reset,
+  } = useForm({
+    defaultValues: data,
+  });
 
-  const {editStudent} = useContext(ModalContext)
   return (
-    <SEditStudentForm onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+    <SEditStudentForm onSubmit={handleSubmit((data) => updateStudents(data))}>
       <InputField
         inputRef={{
-          ...register("firstName", { required: "This is required." }),
+          ...register("first_name", { required: "This is required." }),
         }}
         errorMessage={
           <ErrorMessage
             className="error-message"
             errors={errors}
-            name="firstName"
+            name="first_name"
             as="p"
           />
         }
@@ -37,10 +61,10 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
       />
       <InputField
         inputRef={{
-          ...register("lastName", { required: "This is required." }),
+          ...register("last_name", { required: "This is required." }),
         }}
-        errorMessage={<ErrorMessage errors={errors} name="lastName" as="p" />}
-        placeholder="Last Name"
+        errorMessage={<ErrorMessage errors={errors} name="last_name" as="p" />}
+        placeholder="last_name"
       />
       <InputField
         inputRef={{
@@ -51,21 +75,24 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
       />
       <InputField
         inputRef={{
-          ...register("studentId", { required: "This is required." }),
+          ...register("student_id", { required: "This is required." }),
         }}
-        errorMessage={<ErrorMessage errors={errors} name="studentId" as="p" />}
+        errorMessage={<ErrorMessage errors={errors} name="student_id" as="p" />}
         placeholder="Student ID"
       />
       <SelectInputField
         inputRef={{
-          ...register("className", { required: "This is required." }),
+          ...register("class_name", { required: "This is required." }),
         }}
-        errorMessage={<ErrorMessage errors={errors} name="className" as="p" />}
+        errorMessage={<ErrorMessage errors={errors} name="class_name" as="p" />}
         placeholder="Class Name"
       />
 
       <SButtonWrapper>
-        <CancelButton closeModal={editStudent.toggleEditStudentModalIsOpen} text={"Cancel"} />
+        <CancelButton
+          closeModal={editStudent.toggleEditStudentModalIsOpen}
+          text={"Cancel"}
+        />
         <FormButton text={"Edit"} type={"submit"} />
       </SButtonWrapper>
     </SEditStudentForm>

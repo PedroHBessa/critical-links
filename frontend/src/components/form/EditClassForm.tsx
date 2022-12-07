@@ -22,6 +22,7 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
   return (
     <SEditClassForm onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
         <InputField
+        
         inputRef={{
           ...register("name", { required: "This is required." }),
         }}
@@ -36,6 +37,7 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
         placeholder="Name"
       />
       <InputField
+      
         inputRef={{
           ...register("year", { required: "This is required." }),
         }}

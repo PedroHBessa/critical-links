@@ -18,17 +18,21 @@ const StudentActions: React.FC<IStudentActions> = ({
   deleteModal,
   id,
 }) => {
-  const { deleteStudentConfirmation } = useContext(ModalContext);
+  const { deleteStudentConfirmation, editStudent } = useContext(ModalContext);
   const openModalAndPassId = () => {
     deleteModal(true);
     deleteStudentConfirmation.setDeleteStudentId(id);
+  };
+  const openEditModalAndPassId = () => {
+    openModal(true);
+    editStudent.setEditStudentId(id);
   };
   return (
     <SStudentActions size={size}>
       <span
         id="edit"
         onClick={() => {
-          openModal(true);
+          openEditModalAndPassId();
         }}
       >
         <img src={require(`../../assets/icons/edit-icon-${size}.png`)} />

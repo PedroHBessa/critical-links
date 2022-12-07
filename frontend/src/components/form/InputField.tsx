@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { UseFormRegister, FieldValues } from "react-hook-form";
 
+type Type = "edit" | "create";
+
 export interface IInputField {
   placeholder: string;
   inputRef: Partial<UseFormRegister<FieldValues>>;

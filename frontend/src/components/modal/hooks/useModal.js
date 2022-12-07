@@ -9,6 +9,7 @@ const useModal = () => {
   const [deleteStudentConfirmationModalIsOpen, toggleDeleteStudentConfirmationModal] = useState(false);
   const [deleteClassConfirmationModalIsOpen, toggleDeleteClassConfirmationModal] = useState(false);
   const [deleteStudentId, setDeleteStudentId] = useState('')
+  const [editStudentId, setEditStudentId] = useState('')
   const modals = {
     createStudent: {
       createStudentModalIsOpen,
@@ -17,10 +18,13 @@ const useModal = () => {
     editStudent: {
       editStudentModalIsOpen,
       toggleEditStudentModal,
+      editStudentId,
+      setEditStudentId
     },
     manageClass: {
       manageClassModalIsOpen,
       toggleManageClassModal,
+      
     },
     createClass:{
       createClassModalIsOpen,
