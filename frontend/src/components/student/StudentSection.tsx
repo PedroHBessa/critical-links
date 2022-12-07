@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import StudentCard from "./StudentCard";
 import axios from "../../services/axios";
+import { errorFeedback } from "../../utils/functions/feedback";
 
 export interface IStudentSectionProps {}
 
@@ -20,8 +21,13 @@ const StudentSection: React.FC<IStudentSectionProps> = ({}) => {
   const [students, setStudents] = useState<IStudentModelList>();
   useEffect(() => {
     const getStudents = async () => {
-      const response = await axios.get("/students");
-      setStudents(response.data);
+      try {
+        const response = await axios.get("/students");
+        setStudents(response.data);
+      } catch (error: any) {
+        errorFeedback(`something went wrong: ${error.message}`);
+      }
+   
     };
     getStudents();
   }, []);

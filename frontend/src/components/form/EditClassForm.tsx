@@ -4,10 +4,10 @@ import InputField from "./InputField";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import FormButton from "./FormButton";
-import SelectInputField from "./SelectInputField";
 import CancelButton from "../buttons/CancelButton";
 import { ModalContext } from "../../context/ModalContext";
 import axios from "../../services/axios";
+import { errorFeedback, successFeedback } from "../../utils/functions/feedback";
 
 export interface IEditClassForm {}
 
@@ -17,10 +17,15 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
 
   useEffect(() => {
     const getClass = async () => {
-      const response = await axios.get(
-        `/classes/${editClass.editClassId}`
-      );
-      setData(response.data);
+      try {
+        const response = await axios.get(
+          `/classes/${editClass.editClassId}`
+        );
+        setData(response.data);
+      } catch (error: any) {
+        errorFeedback(`something went wrong: ${error.message}`);
+      }
+      
     };
     getClass();
   }, []);
@@ -39,9 +44,14 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
   });
 
   const updateClass = (data: any) => {
-    axios.patch(`/classes/${editClass.editClassId}`, data);
-    editClass.toggleEditClassModal(false);
-    window.location.reload();
+    try {
+      axios.patch(`/classes/${editClass.editClassId}`, data);
+      editClass.toggleEditClassModal(false);
+      successFeedback("Class updated successfully")
+    } catch (error: any) {
+      errorFeedback(`something went wrong: ${error.message}`);
+    }
+    ;
   };
   
   return (

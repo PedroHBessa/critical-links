@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import InputField from "./InputField";
 import { useForm } from "react-hook-form";
@@ -8,7 +8,8 @@ import SelectInputField from "./SelectInputField";
 import CancelButton from "../buttons/CancelButton";
 import { ModalContext } from "../../context/ModalContext";
 import axios from "../../services/axios";
-import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { successFeedback, errorFeedback } from "../../utils/functions/feedback";
 
 export interface ICreateStudentForm {}
 
@@ -22,9 +23,13 @@ const CreateStudentForm: React.FC<ICreateStudentForm> = () => {
   const { createStudents } = useContext(ModalContext);
 
   const createStudent = async (data: any) => {
-    await axios.post("/students", data);
-    createStudents.toggleCreateStudentModal(false);
-    window.location.reload();
+    try {
+      await axios.post("/students", data);
+      createStudents.toggleCreateStudentModal(false);
+      successFeedback("Student created successfully");
+    } catch (error: any) {
+      errorFeedback(`something went wrong: ${error.message}`);
+    }
   };
 
   return (

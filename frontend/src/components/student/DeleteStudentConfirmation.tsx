@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { ModalContext } from "../../context/ModalContext";
 import axios from "../../services/axios";
+import { errorFeedback, successFeedback } from "../../utils/functions/feedback";
 
 export interface IDeleteStudentConfirmation {
   title: string;
@@ -12,9 +13,13 @@ const DeleteStudentConfirmation: React.FC<IDeleteStudentConfirmation> = ({
 }) => {
   const { deleteStudentConfirmation } = useContext(ModalContext);
   const deleteStudent = async (id: string) => {
-    await axios.delete(`students/${id}`);
-    deleteStudentConfirmation.toggleDeleteStudentConfirmationModal(false);
-    window.location.reload();
+    try {
+      await axios.delete(`students/${id}`);
+      deleteStudentConfirmation.toggleDeleteStudentConfirmationModal(false);
+      successFeedback("Student deleted successfully");
+    } catch (error: any) {
+      errorFeedback(`something went wrong: ${error.message}`);
+    }
   };
   return (
     <>
@@ -22,7 +27,9 @@ const DeleteStudentConfirmation: React.FC<IDeleteStudentConfirmation> = ({
       <SButtonWrapper>
         <SModalButton
           onClick={() => {
-            deleteStudentConfirmation.toggleDeleteStudentConfirmationModal(false);
+            deleteStudentConfirmation.toggleDeleteStudentConfirmationModal(
+              false
+            );
           }}
         >
           No

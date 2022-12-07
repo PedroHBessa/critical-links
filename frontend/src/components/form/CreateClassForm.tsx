@@ -4,10 +4,10 @@ import InputField from "./InputField";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import FormButton from "./FormButton";
-import SelectInputField from "./SelectInputField";
 import CancelButton from "../buttons/CancelButton";
 import { ModalContext } from "../../context/ModalContext";
 import axios from "../../services/axios";
+import { errorFeedback, successFeedback } from "../../utils/functions/feedback";
 
 export interface ICreateClassForm {}
 
@@ -22,9 +22,15 @@ const CreateClassForm: React.FC<ICreateClassForm> = () => {
   const { createClasses } = useContext(ModalContext);
 
   const createClass = async (data: any) => {
-    await axios.post("/classes", data);
-    createClasses.toggleCreateClassModal(false);
-    window.location.reload();
+    try {
+      await axios.post("/classes", data);
+      createClasses.toggleCreateClassModal(false);
+      successFeedback("class created successfully")
+    } catch (error: any) {
+      errorFeedback(`something went wrong: ${error.message}`);
+    }
+   
+    
   };
   return (
     <SCreateClassForm

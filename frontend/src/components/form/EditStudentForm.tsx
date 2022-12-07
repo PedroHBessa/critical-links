@@ -8,6 +8,7 @@ import SelectInputField from "./SelectInputField";
 import CancelButton from "../buttons/CancelButton";
 import { ModalContext } from "../../context/ModalContext";
 import axios from "../../services/axios";
+import { errorFeedback, successFeedback } from "../../utils/functions/feedback";
 
 export interface IEditStudentForm {}
 
@@ -17,10 +18,15 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
 
   useEffect(() => {
     const getStudent = async () => {
-      const response = await axios.get(
-        `/students/${editStudent.editStudentId}`
-      );
-      setData(response.data);
+      try {
+        const response = await axios.get(
+          `/students/${editStudent.editStudentId}`
+        );
+        setData(response.data);
+      } catch (error: any) {
+        errorFeedback(`something went wrong: ${error.message}`);
+      }
+     
     };
     getStudent();
   }, []);
@@ -39,9 +45,15 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
   });
 
   const updateStudent = (data: any) => {
-    axios.patch(`/students/${editStudent.editStudentId}`, data);
-    editStudent.toggleEditStudentModal(false);
-    window.location.reload();
+    try {
+      axios.patch(`/students/${editStudent.editStudentId}`, data);
+      editStudent.toggleEditStudentModal(false);
+      successFeedback("Student updated successfully")
+    } catch (error: any) {
+      errorFeedback(`something went wrong: ${error.message}`);
+      
+    }
+   
   };
 
   return (

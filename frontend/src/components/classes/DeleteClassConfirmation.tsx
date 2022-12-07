@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { ModalContext } from "../../context/ModalContext";
 import axios from "../../services/axios";
+import { errorFeedback, successFeedback } from "../../utils/functions/feedback";
 
 export interface IDeleteClassConfirmation {
   title: string;
@@ -13,9 +14,14 @@ const DeleteClassConfirmation: React.FC<IDeleteClassConfirmation> = ({
   const { deleteClassConfirmation } = useContext(ModalContext);
 
   const deleteClass = async (id: string) => {
-    await axios.delete(`classes/${id}`);
-    deleteClassConfirmation.toggleDeleteClassConfirmationModal(false);
-    window.location.reload();
+    try {
+      await axios.delete(`classes/${id}`);
+      deleteClassConfirmation.toggleDeleteClassConfirmationModal(false);
+      successFeedback("Class deleted successfully");
+    } catch (error: any) {
+      errorFeedback(`something went wrong: ${error.message}`);
+    }
+   
   };
   return (
     <>

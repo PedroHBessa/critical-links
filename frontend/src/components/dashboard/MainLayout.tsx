@@ -12,12 +12,14 @@ import CreateClassForm from "../form/CreateClassForm";
 import EditClassForm from "../form/EditClassForm";
 import DeleteClassConfirmation from "../classes/DeleteClassConfirmation";
 import StudentSection from "../student/StudentSection";
+import { Toaster } from 'react-hot-toast';
 
 function MainLayout() {
   const ctx = useModal();
   return (
     <ModalContext.Provider value={ctx}>
       <SMainContent>
+        <Toaster />
         <SHeader>
           <div className="title">Student Manager</div>
           <ButtonsGroup />
