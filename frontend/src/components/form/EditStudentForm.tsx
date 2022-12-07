@@ -28,7 +28,7 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
   useEffect(() => {
     reset(data);
   }, [data]);
-  
+
   const {
     register,
     formState: { errors },
@@ -48,7 +48,7 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
     <SEditStudentForm onSubmit={handleSubmit((data) => updateStudent(data))}>
       <InputField
         inputRef={{
-          ...register("first_name", { required: "This is required." }),
+          ...register("first_name", { required: "This field is required." }),
         }}
         errorMessage={
           <ErrorMessage
@@ -62,21 +62,34 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
       />
       <InputField
         inputRef={{
-          ...register("last_name", { required: "This is required." }),
+          ...register("last_name", { required: "This field is required." }),
         }}
         errorMessage={<ErrorMessage errors={errors} name="last_name" as="p" />}
         placeholder="last_name"
       />
       <InputField
         inputRef={{
-          ...register("email", { required: "This is required." }),
+          ...register("email", {
+            required: "This field is required.",
+            pattern: {
+              value:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: "Invalid email",
+            },
+          }),
         }}
         errorMessage={<ErrorMessage errors={errors} name="email" as="p" />}
         placeholder="Email"
       />
       <InputField
         inputRef={{
-          ...register("student_id", { required: "This is required." }),
+          ...register("student_id", {
+            required: "This field is required.",
+            pattern: {
+              value: /^[0-9]{6,6}$/,
+              message: "Should have 6 digits (only numbers)",
+            },
+          }),
         }}
         errorMessage={<ErrorMessage errors={errors} name="student_id" as="p" />}
         placeholder="Student ID"
@@ -102,7 +115,14 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
 
 export default EditStudentForm;
 
-const SEditStudentForm = styled.form``;
+const SEditStudentForm = styled.form`
+ & p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-size: 13px;
+    color: #ff0000;
+  }
+`;
 
 const SButtonWrapper = styled.div`
   display: flex;

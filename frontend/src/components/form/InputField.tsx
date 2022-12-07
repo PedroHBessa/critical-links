@@ -40,7 +40,7 @@ const SInputField = styled.input`
   outline: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.42);
   background-color: transparent;
-  margin: 44px 0 5px 0;
+  margin: 40px 0 5px 0;
   &:focus {
     outline: none !important;
   }

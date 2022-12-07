@@ -3,8 +3,8 @@ import React from "react";
 import styled from "styled-components";
 
 export interface ITextContent {
-  fullname: string;
-  email: String;
+  fullname: string | undefined;
+  email: String | undefined;
   id: string;
 }
 

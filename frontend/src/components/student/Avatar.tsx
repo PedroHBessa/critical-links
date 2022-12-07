@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { generateHashFromEmail } from "../../services/hashGenerator"
+import { generateHashFromEmail } from "../../utils/functions/hashGenerator"
 
 export interface IAvatar {
-  email: string
+  email: string | undefined
 }
 
 const Avatar: React.FC<IAvatar> = ({email}) => {

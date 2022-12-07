@@ -49,7 +49,7 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
         <InputField
         
         inputRef={{
-          ...register("name", { required: "This is required." }),
+          ...register("name", { required: "This field is required." }),
         }}
         errorMessage={
           <ErrorMessage
@@ -64,7 +64,10 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
       <InputField
       
         inputRef={{
-          ...register("year", { required: "This is required." }),
+          ...register("year", { required: "This field is required.", pattern: {
+            value: /^[0-9]{1,2}$/,
+            message: "Should have up to 2 digits (only numbers)",
+          }, }),
         }}
         errorMessage={<ErrorMessage errors={errors} name="year" as="p" />}
         placeholder="Year"
@@ -80,7 +83,13 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
 
 export default EditClassForm;
 
-const SEditClassForm = styled.form``;
+const SEditClassForm = styled.form`
+ & p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-size: 13px;
+    color: #ff0000;
+  }`;
 
 const SButtonWrapper = styled.div`
   display: flex;

@@ -4,10 +4,11 @@ import { ModalContext } from "../../context/ModalContext";
 import Avatar from "./Avatar";
 import StudentActions from "./StudentActions";
 import TextContent from "./TextContent";
+import { shortString } from "../../utils/functions/shortString";
 
 export interface IStudentCard {
-    fullname: string
-    email: string
+    fullname: string | undefined
+    email: string | undefined
     studentId: string
     id: string
 }
@@ -18,8 +19,8 @@ const StudentCard: React.FC<IStudentCard> = ({fullname, email, studentId, id}) =
     <SStudentCard>
       <Avatar email={email}/>
       <TextContent
-        fullname={fullname}
-        email={email}
+        fullname={shortString(fullname)}
+        email={shortString(email)}
         id={studentId}
       />
       <StudentActions
