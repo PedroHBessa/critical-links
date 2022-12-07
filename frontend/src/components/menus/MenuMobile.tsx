@@ -5,12 +5,14 @@ import CloseButton from "../../utils/widgets/CloseButton";
 import ButtonMobile from "../buttons/ButtonMobile";
 import { BUTTONS_MOBILE_PRESET } from "../buttons/presets/buttons";
 
-export interface IMenuMobile {}
+export interface IMenuMobile {
+  isShow: boolean
+}
 
-const MenuMobile: React.FC<IMenuMobile> = () => {
+const MenuMobile: React.FC<IMenuMobile> = ({isShow}) => {
   const ctx = useContext(ModalContext);
   return (
-    <SMenuMobileWrapper>
+    <SMenuMobileWrapper isShow={isShow}>
       <div className="close-btn"
         onClick={() => {
           ctx.menuMobile.setMenuMobile(false);
@@ -34,7 +36,24 @@ const MenuMobile: React.FC<IMenuMobile> = () => {
 
 export default MenuMobile;
 
-const SMenuMobileWrapper = styled.div`
+const fadeIn = keyframes`
+  0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+`
+const fadeOut = keyframes`
+  0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+`
+
+const SMenuMobileWrapper = styled.div<{isShow: boolean}>`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -42,6 +61,9 @@ const SMenuMobileWrapper = styled.div`
   right: 0;
   background-color: #ffffff;
   z-index: 99;
+  opacity: ${props => props.isShow ? 1 : 0};
+    display: ${props => props.isShow ? 'block' : 'none'};
+    animation: ${fadeIn} 0.5s;
   & .close-btn{
     position: absolute;
     right: 10px;

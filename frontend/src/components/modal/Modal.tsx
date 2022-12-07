@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface IModalProps {
   children: JSX.Element;
@@ -9,9 +9,9 @@ interface IModalProps {
 }
 
 const Modal: React.FC<IModalProps> = ({ show, children }) => {
-  if (!show) return null;
+  // if (!show) return null;
   return ReactDOM.createPortal(
-    <SModal>
+    <SModal show={show}>
       <SModalWrapper>{children}</SModalWrapper>
     </SModal>,
     document.body
@@ -20,7 +20,16 @@ const Modal: React.FC<IModalProps> = ({ show, children }) => {
 
 export default Modal;
 
-const SModal = styled.div`
+const fadeIn = keyframes`
+  0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+`
+
+const SModal = styled.div<{show: boolean}>`
     background-color: #00000094;
     position: fixed;
     top: 0;
@@ -28,6 +37,10 @@ const SModal = styled.div`
     bottom: 0;
     right: 0;
     height: 100%;
+    opacity: 0;
+    opacity: ${props => props.show ? 1 : 0};
+    display: ${props => props.show ? 'block' : 'none'};
+    animation: ${fadeIn} 0.5s;
 `;
 
 const SModalWrapper = styled.div`

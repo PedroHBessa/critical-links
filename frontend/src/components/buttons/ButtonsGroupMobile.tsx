@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { ModalContext } from "../../context/ModalContext";
 import MenuMobile from "../menus/MenuMobile";
 import Button from "./Button";
@@ -17,12 +17,14 @@ const ButtonsGroupMobile: React.FC<IButtonsGroupMobile> = () => {
         }}
         src={require("../../assets/icons/mb-icon.png")}
       />
-      {ctx.menuMobile.menuMobile ? <MenuMobile /> : null}
+      <MenuMobile isShow={ctx.menuMobile.menuMobile} /> 
     </SButtonsGroupMobile>
   );
 };
 
 export default ButtonsGroupMobile;
+
+
 
 const SButtonsGroupMobile = styled.div`
   display: none;

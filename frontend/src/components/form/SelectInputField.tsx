@@ -35,7 +35,7 @@ const SelectInputField: React.FC<ISelectInputField> = ({
       <SSelectInputField {...inputRef} placeholder={placeholder}>
         <option value="" ></option>
         {classes && classes.map((e, i)=>{
-          return <option value={e._id}>{e.name}</option>
+          return <option key={i} value={e._id}>{e.name}</option>
         })}
         {errorMessage}
       </SSelectInputField>
