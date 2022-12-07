@@ -18,18 +18,18 @@ export class StudentsService {
     return this.studentModel.find();
   }
 
-  async findOne(id: string) {
-    return this.studentModel.findOne({ id });
+  async findOne(_id: string) {
+    return this.studentModel.findOne({ _id });
   }
 
-  async update(id: string, updateStudentDto: UpdateStudentDto) {
+  async update(_id: string, updateStudentDto: UpdateStudentDto) {
     return this.studentModel.updateOne(
-      { id },
+      { _id },
       { $set: { ...updateStudentDto } },
     );
   }
 
-  async remove(id: string) {
-    return this.studentModel.deleteOne({ id });
+  async remove(_id: string) {
+    return this.studentModel.deleteOne({ _id });
   }
 }

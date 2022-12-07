@@ -18,18 +18,18 @@ export class UsersService {
     return this.userModel.find();
   }
 
-  async findOne(id: string) {
-    return this.userModel.findOne({ id });
+  async findOne(_id: string) {
+    return this.userModel.findOne({ _id });
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
+  async update(_id: string, updateUserDto: UpdateUserDto) {
     return this.userModel.updateOne(
-      { id },
+      { _id },
       { $set: { ...updateUserDto } },
     );
   }
 
-  async remove(id: string) {
-    return this.userModel.deleteOne({ id });
+  async remove(_id: string) {
+    return this.userModel.deleteOne({ _id });
   }
 }
