@@ -11,15 +11,17 @@ export interface IDeleteClassConfirmation {
 const DeleteClassConfirmation: React.FC<IDeleteClassConfirmation> = ({
   title,
 }) => {
-  const { deleteClassConfirmation } = useContext(ModalContext);
+  const { deleteClassConfirmation, loading } = useContext(ModalContext);
 
   const deleteClass = async (id: string) => {
     try {
       await axios.delete(`classes/${id}`);
+      loading.setLoading(true)
       deleteClassConfirmation.toggleDeleteClassConfirmationModal(false);
       successFeedback("Class deleted successfully");
     } catch (error: any) {
       errorFeedback(`something went wrong: ${error.message}`);
+      loading.setLoading(false)
     }
    
   };

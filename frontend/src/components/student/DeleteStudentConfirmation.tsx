@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ModalContext } from "../../context/ModalContext";
 import axios from "../../services/axios";
 import { errorFeedback, successFeedback } from "../../utils/functions/feedback";
+import useLoading from "../../hooks/useLoading";
 
 export interface IDeleteStudentConfirmation {
   title: string;
@@ -11,11 +12,14 @@ export interface IDeleteStudentConfirmation {
 const DeleteStudentConfirmation: React.FC<IDeleteStudentConfirmation> = ({
   title,
 }) => {
-  const { deleteStudentConfirmation } = useContext(ModalContext);
+  const { deleteStudentConfirmation, loading } = useContext(ModalContext);
   const deleteStudent = async (id: string) => {
+    
     try {
+      loading.setLoading(true)
       await axios.delete(`students/${id}`);
       deleteStudentConfirmation.toggleDeleteStudentConfirmationModal(false);
+      
       successFeedback("Student deleted successfully");
     } catch (error: any) {
       errorFeedback(`something went wrong: ${error.message}`);

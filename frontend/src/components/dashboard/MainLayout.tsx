@@ -13,6 +13,8 @@ import EditClassForm from "../form/EditClassForm";
 import DeleteClassConfirmation from "../classes/DeleteClassConfirmation";
 import StudentSection from "../student/StudentSection";
 import { Toaster } from 'react-hot-toast';
+import Loading from "../loading/Loading";
+import ButtonsGroupMobile from "../buttons/ButtonsGroupMobile";
 
 function MainLayout() {
   const ctx = useModal();
@@ -23,8 +25,9 @@ function MainLayout() {
         <SHeader>
           <div className="title">Student Manager</div>
           <ButtonsGroup />
+          <ButtonsGroupMobile />
         </SHeader>
-
+        
         <StudentSection />
 
         <ModalContent
@@ -78,6 +81,7 @@ function MainLayout() {
           }
         />
       </SMainContent>
+      {ctx.loading.loading ? <Loading /> : null}
     </ModalContext.Provider>
   );
 }
@@ -89,6 +93,12 @@ const SMainContent = styled.main`
   height: 100%;
   min-height: 100vh;
   margin: 0 38px;
+  ${props => props.theme.fn.media({from: 'md', to: 'lg'})}{
+    margin: 0 38px;
+  }
+  ${props => props.theme.fn.media({to: 'md'})}{
+    margin: 0 0;
+  }
 
   & .title {
     font-family: "Nunito Sans";
@@ -97,6 +107,9 @@ const SMainContent = styled.main`
     font-size: 30px;
     line-height: 25px;
     color: #5b5b5b;
+    ${(props) => props.theme.fn.media({ to: "md" })} {
+    margin: 0 20px;
+  }
   }
 `;
 

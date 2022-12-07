@@ -112,10 +112,10 @@ const theme: IAppTheme = {
   },
   screenSizes: {
     xs: 310,
-    sm: 640,
-    md: 768,
-    lg: 1024,
-    xl: 1280,
+    sm: 375,
+    md: 834,
+    lg: 1280,
+    xl: 1440,
   },
   measurements: {
     mobileFrameContentWidth: 240,

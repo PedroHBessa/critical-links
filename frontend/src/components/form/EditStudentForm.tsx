@@ -14,7 +14,7 @@ export interface IEditStudentForm {}
 
 const EditStudentForm: React.FC<IEditStudentForm> = () => {
   const [data, setData] = useState();
-  const { editStudent } = useContext(ModalContext);
+  const { editStudent, loading } = useContext(ModalContext);
 
   useEffect(() => {
     const getStudent = async () => {
@@ -45,13 +45,16 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
   });
 
   const updateStudent = (data: any) => {
+    
     try {
+      
       axios.patch(`/students/${editStudent.editStudentId}`, data);
+      loading.setLoading(true)
       editStudent.toggleEditStudentModal(false);
       successFeedback("Student updated successfully")
     } catch (error: any) {
       errorFeedback(`something went wrong: ${error.message}`);
-      
+      loading.setLoading(false)
     }
    
   };

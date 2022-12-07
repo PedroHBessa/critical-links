@@ -13,7 +13,7 @@ export interface IEditClassForm {}
 
 const EditClassForm: React.FC<IEditClassForm> = () => {
   const [data, setData] = useState();
-  const {editClass} = useContext(ModalContext)
+  const {editClass, loading} = useContext(ModalContext)
 
   useEffect(() => {
     const getClass = async () => {
@@ -46,10 +46,12 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
   const updateClass = (data: any) => {
     try {
       axios.patch(`/classes/${editClass.editClassId}`, data);
+      loading.setLoading(true)
       editClass.toggleEditClassModal(false);
       successFeedback("Class updated successfully")
     } catch (error: any) {
       errorFeedback(`something went wrong: ${error.message}`);
+      loading.setLoading(false)
     }
     ;
   };

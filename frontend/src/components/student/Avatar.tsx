@@ -23,5 +23,6 @@ const SAvatar = styled.span`
     height: 90px;
     border-radius: 50px;
     background-color: grey;
+    margin: 0 10px;
   }
 `;

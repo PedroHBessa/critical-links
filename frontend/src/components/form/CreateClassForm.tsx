@@ -19,15 +19,17 @@ const CreateClassForm: React.FC<ICreateClassForm> = () => {
   } = useForm();
   const [data, setData] = useState("");
 
-  const { createClasses } = useContext(ModalContext);
+  const { createClasses, loading } = useContext(ModalContext);
 
   const createClass = async (data: any) => {
     try {
       await axios.post("/classes", data);
+      loading.setLoading(true)
       createClasses.toggleCreateClassModal(false);
       successFeedback("class created successfully")
     } catch (error: any) {
       errorFeedback(`something went wrong: ${error.message}`);
+      loading.setLoading(false)
     }
    
     

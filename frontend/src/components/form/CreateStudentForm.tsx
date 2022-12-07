@@ -20,15 +20,17 @@ const CreateStudentForm: React.FC<ICreateStudentForm> = () => {
     handleSubmit,
   } = useForm();
 
-  const { createStudents } = useContext(ModalContext);
+  const { createStudents, loading } = useContext(ModalContext);
 
   const createStudent = async (data: any) => {
     try {
       await axios.post("/students", data);
+      loading.setLoading(true)
       createStudents.toggleCreateStudentModal(false);
       successFeedback("Student created successfully");
     } catch (error: any) {
       errorFeedback(`something went wrong: ${error.message}`);
+      loading.setLoading(false)
     }
   };
 

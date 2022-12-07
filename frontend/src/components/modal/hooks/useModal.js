@@ -12,6 +12,9 @@ const useModal = () => {
   const [deleteClassId, setDeleteClassId] = useState('')
   const [editStudentId, setEditStudentId] = useState('')
   const [editClassId, setEditClassId] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [menuMobile, setMenuMobile] = useState(false)
+
   const modals = {
     createStudents: {
       createStudentModalIsOpen,
@@ -50,6 +53,14 @@ const useModal = () => {
       deleteClassId,
       setDeleteClassId
     },
+    loading: {
+      loading,
+      setLoading
+    },
+    menuMobile: {
+      menuMobile,
+      setMenuMobile
+    }
   };
   return modals;
 };

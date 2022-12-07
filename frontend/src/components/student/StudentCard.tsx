@@ -42,8 +42,9 @@ const SStudentCard = styled.div`
   align-items: center;
   justify-content: space-around;
   padding: 35.5px 20px;
-  margin: 20px 10px;
+  margin: 15px 10px;
   width: 380px;
+  min-width: 350px;
   background-color: #fff;
   border-radius: 30px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -53,6 +54,8 @@ const SStudentCard = styled.div`
   font-size: 18px;
   line-height: 160%;
   letter-spacing: 0.15px;
-
   color: rgba(0, 0, 0, 0.87);
+  ${props => props.theme.fn.media({to: 'sm'})}{
+    margin: 5px 0px;
+  }
 `;
