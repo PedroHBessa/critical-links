@@ -1,27 +1,41 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import ModalButton from "../modal/ModalButton";
 import { ModalContext } from "../../context/ModalContext";
-import Modal from "../modal/Modal";
+import axios from "../../services/axios";
 
 export interface IDeleteClassConfirmation {
   title: string;
 }
 
-const DeleteClassConfirmation: React.FC<IDeleteClassConfirmation> = ({ title }) => {
-  const { deleteConfirmation } = useContext(ModalContext);
+const DeleteClassConfirmation: React.FC<IDeleteClassConfirmation> = ({
+  title,
+}) => {
+  const { deleteClassConfirmation } = useContext(ModalContext);
+
+  const deleteClass = async (id: string) => {
+    await axios.delete(`classes/${id}`);
+    deleteClassConfirmation.toggleDeleteClassConfirmationModal(false);
+    window.location.reload();
+  };
   return (
     <>
       <div className="modal-title">{title}</div>
       <SButtonWrapper>
         <SModalButton
           onClick={() => {
-            deleteConfirmation.setDeleteConfirmationModal(false);
+            deleteClassConfirmation.toggleDeleteClassConfirmationModal(false);
           }}
         >
           No
         </SModalButton>
-        <SModalButton>Yes</SModalButton>;
+        <SModalButton
+          onClick={() => {
+            deleteClass(deleteClassConfirmation.deleteClassId);
+          }}
+        >
+          Yes
+        </SModalButton>
+        ;
       </SButtonWrapper>
     </>
   );

@@ -7,6 +7,7 @@ import FormButton from "./FormButton";
 import SelectInputField from "./SelectInputField";
 import CancelButton from "../buttons/CancelButton";
 import { ModalContext } from "../../context/ModalContext";
+import axios from "../../services/axios";
 
 export interface ICreateClassForm {}
 
@@ -18,13 +19,18 @@ const CreateClassForm: React.FC<ICreateClassForm> = () => {
   } = useForm();
   const [data, setData] = useState("");
 
-  const { createClass } = useContext(ModalContext);
+  const { createClasses } = useContext(ModalContext);
+
+  const createClass = async (data: any) => {
+    await axios.post("/classes", data);
+    createClasses.toggleCreateClassModal(false);
+    window.location.reload();
+  };
   return (
     <SCreateClassForm
-      onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
+      onSubmit={handleSubmit((data) => createClass(data))}
     >
       <InputField
-        typeForm="create"
         inputRef={{
           ...register("name", { required: "This is required." }),
         }}
@@ -39,7 +45,6 @@ const CreateClassForm: React.FC<ICreateClassForm> = () => {
         placeholder="Name"
       />
       <InputField
-        typeForm="create"
         inputRef={{
           ...register("year", { required: "This is required." }),
         }}
@@ -49,7 +54,7 @@ const CreateClassForm: React.FC<ICreateClassForm> = () => {
 
       <SButtonWrapper>
         <CancelButton
-          closeModal={createClass.toggleCreateClassModal}
+          closeModal={createClasses.toggleCreateClassModal}
           text={"Cancel"}
         />
         <FormButton text={"Create"} type={"submit"} />

@@ -19,16 +19,16 @@ const CreateStudentForm: React.FC<ICreateStudentForm> = () => {
     handleSubmit,
   } = useForm();
 
-  const { createStudent } = useContext(ModalContext);
+  const { createStudents } = useContext(ModalContext);
 
-  const createStudents = (data: any) => {
-    axios.post("/students", data);
-    createStudent.toggleCreateStudentModal(false);
+  const createStudent = async (data: any) => {
+    await axios.post("/students", data);
+    createStudents.toggleCreateStudentModal(false);
     window.location.reload();
   };
 
   return (
-    <SCreateStudentForm onSubmit={handleSubmit((data) => createStudents(data))}>
+    <SCreateStudentForm onSubmit={handleSubmit((data) => createStudent(data))}>
       <InputField
         inputRef={{
           ...register("first_name", { required: "This is required." }),
@@ -66,7 +66,7 @@ const CreateStudentForm: React.FC<ICreateStudentForm> = () => {
       />
       <SelectInputField
         inputRef={{
-          ...register("class_name", { required: "This is required." }),
+          ...register("class_name"),
         }}
         errorMessage={<ErrorMessage errors={errors} name="class_name" as="p" />}
         placeholder="Class Name"
@@ -74,7 +74,7 @@ const CreateStudentForm: React.FC<ICreateStudentForm> = () => {
 
       <SButtonWrapper>
         <CancelButton
-          closeModal={createStudent.toggleCreateStudentModal}
+          closeModal={createStudents.toggleCreateStudentModal}
           text={"Cancel"}
         />
         <FormButton text={"Create"} type={"submit"} />

@@ -32,8 +32,8 @@ function MainLayout() {
           content={<EditStudentForm />}
         />
         <ModalContent
-          modal={ctx.createStudent.createStudentModalIsOpen}
-          isModalOpen={ctx.createStudent.toggleCreateStudentModal}
+          modal={ctx.createStudents.createStudentModalIsOpen}
+          isModalOpen={ctx.createStudents.toggleCreateStudentModal}
           title="Create Student"
           content={<CreateStudentForm />}
         />
@@ -44,8 +44,8 @@ function MainLayout() {
           content={<ManageClass />}
         />
         <ModalContent
-          modal={ctx.createClass.createClassModalIsOpen}
-          isModalOpen={ctx.createClass.toggleCreateClassModal}
+          modal={ctx.createClasses.createClassModalIsOpen}
+          isModalOpen={ctx.createClasses.toggleCreateClassModal}
           title="Create Class"
           content={<CreateClassForm />}
         />

@@ -19,7 +19,7 @@ const StudentActions: React.FC<IStudentActions> = ({
   id,
 }) => {
   const { deleteStudentConfirmation, editStudent } = useContext(ModalContext);
-  const openModalAndPassId = () => {
+  const openDeleteModalAndPassId = () => {
     deleteModal(true);
     deleteStudentConfirmation.setDeleteStudentId(id);
   };
@@ -40,7 +40,7 @@ const StudentActions: React.FC<IStudentActions> = ({
       <span
         id="delete"
         onClick={() => {
-          openModalAndPassId();
+          openDeleteModalAndPassId();
         }}
       >
         <img

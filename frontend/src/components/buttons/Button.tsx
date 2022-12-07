@@ -13,8 +13,8 @@ const Button: React.FC<IButton> = ({ text, type }) => {
   return (
     <SButton
       onClick={() => {
-        if(type === 0 ) return  ctx.createStudent.toggleCreateStudentModal(true);
-        if(type === 1 ) return  ctx.createClass.toggleCreateClassModal(true);
+        if(type === 0 ) return  ctx.createStudents.toggleCreateStudentModal(true);
+        if(type === 1 ) return  ctx.createClasses.toggleCreateClassModal(true);
         if(type === 2 ) return  ctx.manageClass.toggleManageClassModal(true);
       }}
     >

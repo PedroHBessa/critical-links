@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { UseFormRegister, FieldValues } from "react-hook-form";
+import axios from "../../services/axios";
 
 export interface ISelectInputField {
   placeholder: string;
@@ -8,17 +9,34 @@ export interface ISelectInputField {
   errorMessage: JSX.Element;
 }
 
+export interface IClassModel {
+  name: string
+  year: string
+  _id: string
+}
+
+export interface IClassModelList extends Array<IClassModel>{}
+
 const SelectInputField: React.FC<ISelectInputField> = ({
   placeholder,
   inputRef,
   errorMessage,
 }) => {
+  const [classes, setClasses] = useState<IClassModelList>()
+  useEffect(() => {
+    const getClasses = async () => {
+      const response = await axios.get("/classes");
+      setClasses(response.data);
+    };
+    getClasses();
+  }, []);
   return (
     <>
-      <SSelectInputField {...inputRef} placeholder={placeholder} >
-        <option value="" >Class Name</option>
-        <option value="A">Option A</option>
-        <option value="B">Option B</option>
+      <SSelectInputField {...inputRef} placeholder={placeholder}>
+        <option value="" ></option>
+        {classes && classes.map((e, i)=>{
+          return <option value={e._id}>{e.name}</option>
+        })}
         {errorMessage}
       </SSelectInputField>
      

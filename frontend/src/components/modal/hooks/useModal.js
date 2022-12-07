@@ -9,9 +9,11 @@ const useModal = () => {
   const [deleteStudentConfirmationModalIsOpen, toggleDeleteStudentConfirmationModal] = useState(false);
   const [deleteClassConfirmationModalIsOpen, toggleDeleteClassConfirmationModal] = useState(false);
   const [deleteStudentId, setDeleteStudentId] = useState('')
+  const [deleteClassId, setDeleteClassId] = useState('')
   const [editStudentId, setEditStudentId] = useState('')
+  const [editClassId, setEditClassId] = useState('')
   const modals = {
-    createStudent: {
+    createStudents: {
       createStudentModalIsOpen,
       toggleCreateStudentModal,
     },
@@ -26,13 +28,15 @@ const useModal = () => {
       toggleManageClassModal,
       
     },
-    createClass:{
+    createClasses:{
       createClassModalIsOpen,
       toggleCreateClassModal
     },
     editClass: {
       editClassModalIsOpen,
       toggleEditClassModal,
+      editClassId,
+      setEditClassId
     },
     deleteStudentConfirmation: {
       deleteStudentConfirmationModalIsOpen,
@@ -43,6 +47,8 @@ const useModal = () => {
     deleteClassConfirmation: {
       deleteClassConfirmationModalIsOpen,
       toggleDeleteClassConfirmationModal,
+      deleteClassId,
+      setDeleteClassId
     },
   };
   return modals;

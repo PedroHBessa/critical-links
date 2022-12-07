@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import InputField from "./InputField";
 import { useForm } from "react-hook-form";
@@ -7,20 +7,45 @@ import FormButton from "./FormButton";
 import SelectInputField from "./SelectInputField";
 import CancelButton from "../buttons/CancelButton";
 import { ModalContext } from "../../context/ModalContext";
+import axios from "../../services/axios";
 
 export interface IEditClassForm {}
 
 const EditClassForm: React.FC<IEditClassForm> = () => {
+  const [data, setData] = useState();
+  const {editClass} = useContext(ModalContext)
+
+  useEffect(() => {
+    const getClass = async () => {
+      const response = await axios.get(
+        `/classes/${editClass.editClassId}`
+      );
+      setData(response.data);
+    };
+    getClass();
+  }, []);
+
+  useEffect(() => {
+    reset(data);
+  }, [data]);
+
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
-  const [data, setData] = useState("");
+    reset
+  } = useForm({
+    defaultValues: data,
+  });
 
-  const {editStudent} = useContext(ModalContext)
+  const updateClass = (data: any) => {
+    axios.patch(`/classes/${editClass.editClassId}`, data);
+    editClass.toggleEditClassModal(false);
+    window.location.reload();
+  };
+  
   return (
-    <SEditClassForm onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+    <SEditClassForm onSubmit={handleSubmit((data) => updateClass(data))}>
         <InputField
         
         inputRef={{
@@ -46,7 +71,7 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
       />
 
       <SButtonWrapper>
-        <CancelButton closeModal={editStudent.toggleEditStudentModalIsOpen} text={"Cancel"} />
+        <CancelButton closeModal={editClass.toggleEditClassModal} text={"Cancel"} />
         <FormButton text={"Edit"} type={"submit"} />
       </SButtonWrapper>
     </SEditClassForm>

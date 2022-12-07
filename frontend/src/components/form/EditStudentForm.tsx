@@ -25,15 +25,10 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
     getStudent();
   }, []);
 
-  const updateStudents = (data: any) => {
-    axios.patch(`/students/${editStudent.editStudentId}`, data);
-    editStudent.toggleCreateStudentModal(false);
-    window.location.reload();
-  };
-
   useEffect(() => {
     reset(data);
   }, [data]);
+  
   const {
     register,
     formState: { errors },
@@ -43,8 +38,14 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
     defaultValues: data,
   });
 
+  const updateStudent = (data: any) => {
+    axios.patch(`/students/${editStudent.editStudentId}`, data);
+    editStudent.toggleEditStudentModal(false);
+    window.location.reload();
+  };
+
   return (
-    <SEditStudentForm onSubmit={handleSubmit((data) => updateStudents(data))}>
+    <SEditStudentForm onSubmit={handleSubmit((data) => updateStudent(data))}>
       <InputField
         inputRef={{
           ...register("first_name", { required: "This is required." }),
@@ -82,7 +83,7 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
       />
       <SelectInputField
         inputRef={{
-          ...register("class_name", { required: "This is required." }),
+          ...register("class_name"),
         }}
         errorMessage={<ErrorMessage errors={errors} name="class_name" as="p" />}
         placeholder="Class Name"

@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import useModal from "../modal/hooks/useModal";
-import Avatar from "./Avatar";
-import StudentActions from "./StudentActions";
 import StudentCard from "./StudentCard";
-import TextContent from "./TextContent";
 import axios from "../../services/axios";
 
-export interface IStudentSection {}
-const StudentSection: React.FC<IStudentSection> = ({}) => {
-  const [students, setStudents] = useState<any>(null);
+export interface IStudentSectionProps {}
+
+export interface IStudentModel {
+  first_name: string;
+  last_name: string;
+  email: string;
+  student_id: string;
+  class_name: string;
+  _id: string
+}
+
+export interface IStudentModelList extends Array<IStudentModel> {}
+
+const StudentSection: React.FC<IStudentSectionProps> = ({}) => {
+  const [students, setStudents] = useState<IStudentModelList>();
   useEffect(() => {
     const getStudents = async () => {
       const response = await axios.get("/students");
@@ -20,8 +28,16 @@ const StudentSection: React.FC<IStudentSection> = ({}) => {
   return (
     <SStudentSection>
       {students &&
-        students.map((e: any, i: number) => {
-          return <StudentCard key={i} fullname={e.first_name} email={e.email} studentId={e.student_id} id={e._id} />;
+        students.map((e, i) => {
+          return (
+            <StudentCard
+              key={i}
+              fullname={`${e.first_name} ${e.last_name}`}
+              email={e.email}
+              studentId={e.student_id}
+              id={e._id}
+            />
+          );
         })}
     </SStudentSection>
   );
@@ -35,7 +51,6 @@ const SStudentSection = styled.div`
   justify-content: flex-start;
   flex-wrap: wrap;
   margin-left: 40px;
-  
 
   color: rgba(0, 0, 0, 0.87);
 `;

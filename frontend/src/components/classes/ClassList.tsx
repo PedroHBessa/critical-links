@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "../../services/axios";
 import Class from "./Class";
 
-export interface IClassList {}
+export interface IClassListProps {}
 
-const ClassList: React.FC<IClassList> = ({}) => {
+export interface IClassModel {
+  name: string
+  year: string
+  _id: string
+}
+
+export interface IClassModelList extends Array<IClassModel>{}
+
+const ClassList: React.FC<IClassListProps> = ({}) => {
+  const [classes, setClasses] = useState<IClassModelList | undefined>();
+  useEffect(() => {
+    const getClasses = async () => {
+      const response = await axios.get("/classes");
+      setClasses(response.data);
+    };
+    getClasses();
+  }, []);
   return (
     <SClassList>
-      <span>Class name</span>
-      <Class />
-      <Class />
-      <Class />
+      <span className="title">Class name</span>
+      {classes && classes.map((e, i) => {
+        return <Class key={i} name={e.name} id={e._id} />
+      })}
     </SClassList>
   );
 };
@@ -18,6 +35,10 @@ const ClassList: React.FC<IClassList> = ({}) => {
 export default ClassList;
 
 const SClassList = styled.div`
+& .title{
+  display: block;
+  margin-bottom: 3px;
+}
   & span {
     font-family: "Open Sans";
     font-style: normal;

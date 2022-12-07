@@ -3,19 +3,25 @@ import styled from "styled-components";
 import { ModalContext } from "../../context/ModalContext";
 import ClassActions from "../classes/ClassesActions";
 
-export interface IClass {}
+export interface IClass {
+  name: string
+  id: string
+}
 
-const Class: React.FC<IClass> = ({}) => {
+const Class: React.FC<IClass> = ({name, id}) => {
   const ctx = useContext(ModalContext);
+
+  
   return (
     <SClass>
-      <span>Classname</span>
+      <span>{name}</span>
       <ClassActions
         size="sm"
         openModal={ctx.editClass.toggleEditClassModal}
         deleteModal={
           ctx.deleteClassConfirmation.toggleDeleteClassConfirmationModal
         }
+        id={id}
       />
     </SClass>
   );

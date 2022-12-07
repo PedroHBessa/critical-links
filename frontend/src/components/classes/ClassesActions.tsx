@@ -9,19 +9,30 @@ export interface IClassesActions {
   size: Size;
   openModal: (arg: boolean) => void;
   deleteModal: (arg: boolean) => void;
+  id: string
 }
 
 const ClassesActions: React.FC<IClassesActions> = ({
   size,
   openModal,
   deleteModal,
+  id
 }) => {
+  const { deleteClassConfirmation, editClass } = useContext(ModalContext);
+  const openDeleteModalAndPassId = () => {
+    deleteModal(true);
+    deleteClassConfirmation.setDeleteClassId(id);
+  };
+  const openEditModalAndPassId = () => {
+    openModal(true);
+    editClass.setEditClassId(id);
+  };
   return (
     <SClassesActions size={size}>
       <span
         id="edit"
         onClick={() => {
-          openModal(true);
+          openEditModalAndPassId()
         }}
       >
         <img src={require(`../../assets/icons/edit-icon-${size}.png`)} />
@@ -29,7 +40,7 @@ const ClassesActions: React.FC<IClassesActions> = ({
       <span
         id="delete"
         onClick={() => {
-          deleteModal(true);
+          openDeleteModalAndPassId()
         }}
       >
         <img src={require(`../../assets/icons/delete-icon-${size}.png`)} />
