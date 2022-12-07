@@ -9,7 +9,7 @@ interface IModalProps {
 }
 
 const Modal: React.FC<IModalProps> = ({ show, children }) => {
-  // if (!show) return null;
+  if (!show) return null;
   return ReactDOM.createPortal(
     <SModal show={show}>
       <SModalWrapper>{children}</SModalWrapper>

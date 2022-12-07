@@ -28,6 +28,7 @@ const STextContent = styled.div`
 
   text-align: left;
   & #fullname {
+    display: inline;
     font-weight: 700;
     color: #272727;
   }
