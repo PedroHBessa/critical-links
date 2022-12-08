@@ -23,7 +23,7 @@ function MainLayout() {
       <SMainContent>
         <Toaster />
         <SHeader>
-          <div className="title">Student Manager</div>
+          <div data-testid="main-title" className="title">Student Manager</div>
           <ButtonsGroup />
           <ButtonsGroupMobile />
         </SHeader>

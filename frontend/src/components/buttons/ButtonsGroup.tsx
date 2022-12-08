@@ -7,7 +7,7 @@ export interface IButtonsGroup {}
 
 const ButtonsGroup: React.FC<IButtonsGroup> = () => {
   return (
-    <SButtonsGroup>
+    <SButtonsGroup data-testid="btns-group">
       {BUTTONS_PRESET &&
         BUTTONS_PRESET.map((e, i) => {
           return <Button key={i} text={e.text} type={e.type} />;

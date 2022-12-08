@@ -8,7 +8,7 @@ export interface ICancelButton {
 
 const CancelButton: React.FC<ICancelButton> = ({closeModal, text}) => {
   return (
-      <SCancelButton onClick={()=>{closeModal(false)}} type={"reset"} value={text} />
+      <SCancelButton data-testid="cancel-btn" onClick={()=>{closeModal(false)}} type={"reset"} value={text} />
   );
 };
 

@@ -11,7 +11,7 @@ const Button: React.FC<IButton> = ({ text, type }) => {
   const ctx = useContext(ModalContext);
 
   return (
-    <SButton
+    <SButton data-testid="button"
       onClick={() => {
         if(type === 0 ) return  ctx.createStudents.toggleCreateStudentModal(true);
         if(type === 1 ) return  ctx.createClasses.toggleCreateClassModal(true);

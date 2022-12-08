@@ -5,7 +5,7 @@ export interface ILoading {}
 
 const Loading: React.FC<ILoading> = () => {
   return (
-    <SLoadingWrapper>
+    <SLoadingWrapper data-testid="loading">
       <SLoading className="lds-ring">
         <div></div>
         <div></div>

@@ -98,7 +98,7 @@ interface IAppThemeProviderProps {
   children: React.ReactNode
 }
 
-const theme: IAppTheme = {
+export const theme: IAppTheme = {
   primaryColor: '#EF631C',
   text: {
     nav: '#686a6b',
@@ -150,7 +150,7 @@ const theme: IAppTheme = {
   },
 }
 
-const AppThemeProvider: React.FC<IAppThemeProviderProps> = ({ children }) => {
+export const AppThemeProvider: React.FC<IAppThemeProviderProps> = ({ children }) => {
   useEffect(() => {
     WebFont.load({
       google: {

@@ -17,6 +17,7 @@ const ButtonMobile: React.FC<IButtonMobile> = ({ text, type }) => {
   };
   return (
     <SButtonMobile
+    data-testid='btn-mobile'
       onClick={() => {
         toggleModalMobile();
       }}

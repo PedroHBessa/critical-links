@@ -10,7 +10,7 @@ export interface IButtonsGroupMobile {}
 const ButtonsGroupMobile: React.FC<IButtonsGroupMobile> = () => {
   const ctx = useContext(ModalContext);
   return (
-    <SButtonsGroupMobile>
+    <SButtonsGroupMobile data-testid="btns-group-mobile">
       <img
         onClick={() => {
           ctx.menuMobile.setMenuMobile(true);
