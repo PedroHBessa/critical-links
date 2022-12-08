@@ -32,4 +32,8 @@ export class UsersService {
   async remove(_id: string) {
     return this.userModel.deleteOne({ _id });
   }
+
+  async getByUsername(username: string) {
+    return this.userModel.findOne({ username });
+  }
 }
