@@ -46,7 +46,14 @@ const SignupForm: React.FC<ISignupForm> = () => {
       />
       <InputField
         inputRef={{
-          ...register("email", { required: "This field is required." }),
+          ...register("email", {
+            required: "This field is required.",
+            pattern: {
+              value:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: "Invalid email",
+            },
+          }),
         }}
         errorMessage={
           <ErrorMessage
@@ -62,12 +69,13 @@ const SignupForm: React.FC<ISignupForm> = () => {
         inputRef={{
           ...register("password", {
             required: "This field is required.",
-            pattern: {
-              value: /^[0-9]{1,2}$/,
-              message: "Should have up to 2 digits (only numbers)",
+            minLength: {
+              value: 8,
+              message: "Password too short, must have at least 8 characters",
             },
           }),
         }}
+        type={"password"}
         errorMessage={<ErrorMessage errors={errors} name="password" as="p" />}
         placeholder="password"
       />

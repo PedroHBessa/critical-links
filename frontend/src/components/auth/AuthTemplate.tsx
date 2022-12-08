@@ -74,14 +74,18 @@ export default AuthTemplate;
 const SAuthTemplate = styled.div`
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 75%;
   transform: translate(-50%, -50%);
   width: 350px;
   padding: 32px;
-  background-color: #fff;
+  background-color: #ffffffe7;
   border-radius: 10px;
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
-    0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+    0px 24px 38px 3px #b8b8b84c, 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+    ${props => props.theme.fn.media({to: 'lg'})}{
+      left: 50%;
+}
+   
   & .title {
     font-family: "Nunito Sans";
     font-style: normal;

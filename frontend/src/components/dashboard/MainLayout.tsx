@@ -21,7 +21,7 @@ function MainLayout() {
   return (
     <ModalContext.Provider value={ctx}>
       <SMainContent>
-        <Toaster />
+        
         <SHeader>
           <div data-testid="main-title" className="title">Student Manager</div>
           <ButtonsGroup />
@@ -81,7 +81,7 @@ function MainLayout() {
           }
         />
       </SMainContent>
-      {ctx.loading.loading ? <Loading /> : null}
+      
     </ModalContext.Provider>
   );
 }

@@ -2,22 +2,24 @@ import React from "react";
 import styled from "styled-components";
 import { UseFormRegister, FieldValues } from "react-hook-form";
 
-type Type = "edit" | "create";
+type Type = "password" | "text";
 
 export interface IInputField {
   placeholder: string;
   inputRef: Partial<UseFormRegister<FieldValues>>;
   errorMessage: JSX.Element;
+  type?: Type
 }
 
 const InputField: React.FC<IInputField> = ({
   placeholder,
   inputRef,
   errorMessage,
+  type
 }) => {
   return (
     <>
-      <SInputField {...inputRef} type={"text"} placeholder={placeholder} />
+      <SInputField {...inputRef} type={type ? type : 'text'} placeholder={placeholder} />
       {errorMessage}
     </>
   );

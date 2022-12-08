@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import AppThemeProvider from "./theme/AppThemeProvider";
 import { ProtectedRoute } from "./utils/routes/ProtectedRoute";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             }
           />
         </Routes>
+        <Toaster />
       </AuthProvider>
     </AppThemeProvider>
   );

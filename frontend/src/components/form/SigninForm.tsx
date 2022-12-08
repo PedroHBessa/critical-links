@@ -48,12 +48,13 @@ const SignupForm: React.FC<ISignupForm> = () => {
         inputRef={{
           ...register("password", {
             required: "This field is required.",
-            pattern: {
-              value: /^[0-9]{1,2}$/,
-              message: "Should have up to 2 digits (only numbers)",
-            },
+            minLength: {
+              value: 8,
+              message: "Password too short, must have at least 8 characters"
+            }
           }),
         }}
+        type={'password'}
         errorMessage={<ErrorMessage errors={errors} name="password" as="p" />}
         placeholder="password"
       />
