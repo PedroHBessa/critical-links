@@ -40,4 +40,7 @@ const SButton = styled.button`
   border-radius: 8px;
   margin: 0 6.5px;
   cursor: pointer;
+  &:hover{
+    background-color: #4e87f8d0;
+  }
 `;

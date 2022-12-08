@@ -15,6 +15,7 @@ import StudentSection from "../student/StudentSection";
 import { Toaster } from 'react-hot-toast';
 import Loading from "../loading/Loading";
 import ButtonsGroupMobile from "../buttons/ButtonsGroupMobile";
+import Menu from "../menus/Menu";
 
 function MainLayout() {
   const ctx = useModal();

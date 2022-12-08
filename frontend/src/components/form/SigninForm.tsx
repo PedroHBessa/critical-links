@@ -8,6 +8,8 @@ import CancelButton from "../buttons/CancelButton";
 import axios from "../../services/axios";
 import { errorFeedback, successFeedback } from "../../utils/functions/feedback";
 import { ModalContext } from "../../context/ModalContext";
+import { useAuth } from "../../hooks/useAuth";
+import { AuthContext } from "../../context/AuthContext";
 
 export interface ISignupForm {}
 
@@ -17,13 +19,15 @@ const SignupForm: React.FC<ISignupForm> = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [data, setData] = useState("");
+
+  const ctx = useContext(AuthContext);
 
   const createUser = async (data: any) => {
     try {
-      await axios.post("/signin", data);
+      const response = await axios.post("/auth/login", data);
+      ctx.login(response);
 
-      successFeedback("user logged successfully");
+      successFeedback("user logged successfully", false);
     } catch (error: any) {
       errorFeedback(`something went wrong: ${error.message}`);
     }
@@ -50,11 +54,11 @@ const SignupForm: React.FC<ISignupForm> = () => {
             required: "This field is required.",
             minLength: {
               value: 8,
-              message: "Password too short, must have at least 8 characters"
-            }
+              message: "Password too short, must have at least 8 characters",
+            },
           }),
         }}
-        type={'password'}
+        type={"password"}
         errorMessage={<ErrorMessage errors={errors} name="password" as="p" />}
         placeholder="password"
       />

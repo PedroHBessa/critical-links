@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./hooks/useAuth";
+import { AuthProvider, useAuth } from "./hooks/useAuth";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import AppThemeProvider from "./theme/AppThemeProvider";
@@ -8,7 +8,9 @@ import { ProtectedRoute } from "./utils/routes/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 
 function App() {
-  return (
+  
+  return ( 
+    <AuthProvider>
     <AppThemeProvider>
       <AuthProvider>
         <Routes>
@@ -25,6 +27,7 @@ function App() {
         <Toaster />
       </AuthProvider>
     </AppThemeProvider>
+    </AuthProvider> 
   );
 }
 

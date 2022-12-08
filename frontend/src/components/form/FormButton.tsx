@@ -24,7 +24,7 @@ const SFormButton = styled.input`
   text-transform: uppercase;
   color: #4e87f8;
   padding: 8px 16px;
-  margin: 8px 8px 0 8px;
+  margin: 8px 0 0 0;
   background-color: transparent;
   border: none;
   cursor: pointer;
