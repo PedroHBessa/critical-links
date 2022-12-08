@@ -42,5 +42,8 @@ const SMenu = styled.div`
     font-weight: 400;
     margin: 0 40px;
     cursor: pointer;
+    ${(props) => props.theme.fn.media({  to: "md" })} {
+      display: none;
+    }
   }
 `;

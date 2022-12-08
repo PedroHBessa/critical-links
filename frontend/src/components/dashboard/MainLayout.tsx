@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import ButtonsGroup from "../../components/buttons/ButtonsGroup";
 import ModalContent from "../modal/ModalContent";
@@ -12,10 +12,8 @@ import CreateClassForm from "../form/CreateClassForm";
 import EditClassForm from "../form/EditClassForm";
 import DeleteClassConfirmation from "../classes/DeleteClassConfirmation";
 import StudentSection from "../student/StudentSection";
-import { Toaster } from 'react-hot-toast';
 import Loading from "../loading/Loading";
 import ButtonsGroupMobile from "../buttons/ButtonsGroupMobile";
-import Menu from "../menus/Menu";
 
 function MainLayout() {
   const ctx = useModal();
@@ -82,7 +80,7 @@ function MainLayout() {
           }
         />
       </SMainContent>
-      
+      {ctx.loading.loading ? <Loading /> : null}
     </ModalContext.Provider>
   );
 }
@@ -118,5 +116,5 @@ const SHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 17px 0 35px 0;
+  padding: 17px 0 17px 0;
 `;

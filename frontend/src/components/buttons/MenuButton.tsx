@@ -39,6 +39,9 @@ const SMenuButton = styled.button`
   margin: 10px 40px;
   cursor: pointer;
   transition: background-color 0.3s;
+  ${(props) => props.theme.fn.media({  to: "sm" })} {
+    margin: 10px 20px;
+    }
   &:hover{
     background-color: #ffffff4b;
   }

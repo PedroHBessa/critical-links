@@ -24,10 +24,8 @@ const MenuMobile: React.FC<IMenuMobile> = ({isShow}) => {
         {BUTTONS_MOBILE_PRESET &&
           BUTTONS_MOBILE_PRESET.map((e, i) => {
             return (
-              <>
                 <ButtonMobile key={i} text={e.text} type={e.type} />
-              </>
-            );
+           );
           })}
       </SMenuMobile>
     </SMenuMobileWrapper>

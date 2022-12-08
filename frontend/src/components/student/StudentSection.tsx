@@ -13,44 +13,59 @@ export interface IStudentModel {
   email: string;
   student_id: string;
   class_name: string;
-  _id: string
+  _id: string;
 }
 
 export interface IStudentModelList extends Array<IStudentModel> {}
 
 const StudentSection: React.FC<IStudentSectionProps> = ({}) => {
-  const [students, setStudents] = useState<IStudentModelList>();
-  const {loading } = useContext(ModalContext);
+  const [students, setStudents] = useState<IStudentModelList | null>(null);
+  const { loading } = useContext(ModalContext);
   useEffect(() => {
     const getStudents = async () => {
       try {
-        loading.setLoading(true)
+        loading.setLoading(true);
         const response = await axios.get("/students");
-        setStudents(response.data);
+        response.data.length === 0
+          ? setStudents(null)
+          : setStudents(response.data);
       } catch (error: any) {
         errorFeedback(`something went wrong: ${error.message}`);
       } finally {
-        loading.setLoading(false)
+        loading.setLoading(false);
       }
-   
     };
     getStudents();
   }, []);
+
+  if (students) {
+    return (
+      <SStudentSection>
+        {students &&
+          students.map((e, i) => {
+            return (
+              <StudentCard
+                key={i}
+                fullname={`${e.first_name} ${e.last_name}`}
+                email={e.email}
+                studentId={e.student_id}
+                id={e._id}
+              />
+            );
+          })}
+      </SStudentSection>
+    );
+  }
   return (
-    <SStudentSection>
-      {students &&
-        students.map((e, i) => {
-          return (
-            <StudentCard
-              key={i}
-              fullname={`${e.first_name} ${e.last_name}`}
-              email={e.email}
-              studentId={e.student_id}
-              id={e._id}
-            />
-          );
-        })}
-    </SStudentSection>
+    <SNoUsers>
+      <div className="no-users">
+        <img
+          src={require("../../assets/icons/no-users.png")}
+          alt="no users available"
+        />
+        <h4>No Students Available</h4>
+      </div>
+    </SNoUsers>
   );
 };
 
@@ -60,12 +75,31 @@ const SStudentSection = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
-  ${props => props.theme.fn.media({from: 'md', to: 'lg'})}{
+  ${(props) => props.theme.fn.media({ from: "md", to: "lg" })} {
     grid-template-columns: repeat(2, 1fr);
   }
-  ${props => props.theme.fn.media({to: 'md'})}{
+  ${(props) => props.theme.fn.media({ to: "md" })} {
     grid-template-columns: repeat(1, 1fr);
   }
 
   color: rgba(0, 0, 0, 0.87);
+`;
+
+const SNoUsers = styled.div`
+  & .no-users {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    & h4{
+      opacity: 0.25;
+    }
+    
+    & img {
+      width: 10%;
+      margin: 80px 0 20px 0;
+      opacity: 0.25;
+    }
+  }
 `;

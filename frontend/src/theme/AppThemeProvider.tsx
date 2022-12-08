@@ -112,7 +112,7 @@ export const theme: IAppTheme = {
   },
   screenSizes: {
     xs: 310,
-    sm: 375,
+    sm: 420,
     md: 834,
     lg: 1280,
     xl: 1440,
