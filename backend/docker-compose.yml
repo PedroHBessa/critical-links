@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  main:
+    depends_on:
+      - mongo
+    container_name: main
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    command: npm run start:dev
+
+  mongo:
+    container_name: mongo
+    image: 'mongo:5'
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_DATA_DIR=/data/db
+
+volumes:
+  mongo_data:
