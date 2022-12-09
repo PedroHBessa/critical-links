@@ -13,7 +13,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     StudentsModule,
     ClassesModule,
     UsersModule,
-    MongooseModule.forRoot('mongodb://mongo:27017/app_development'),
+    MongooseModule.forRoot('mongodb://mongo/nest'),
   ],
   controllers: [AppController],
   providers: [AppService],
