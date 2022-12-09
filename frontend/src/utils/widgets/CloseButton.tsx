@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-export interface ICloseButton {
-}
+export interface ICloseButton {}
 
-const CloseButton: React.FC<ICloseButton> = ({ }) => {
-
+const CloseButton: React.FC<ICloseButton> = ({}) => {
   return (
     <SCloseButton>
       <img src={require("../../assets/icons/close-btn.png")} />

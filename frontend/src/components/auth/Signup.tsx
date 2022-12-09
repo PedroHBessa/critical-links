@@ -4,21 +4,16 @@ import { ModalContext } from "../../context/ModalContext";
 import FormButton from "../form/FormButton";
 import SignupForm from "../form/SignupForm";
 
-export interface ISignup {
-}
+export interface ISignup {}
 
-const Signup: React.FC<ISignup> = ({ }) => {
-
+const Signup: React.FC<ISignup> = ({}) => {
   return (
     <SSignup data-testid="Signup">
-       <SignupForm />
+      <SignupForm />
     </SSignup>
   );
 };
 
 export default Signup;
 
-const SSignup = styled.div`
-   
-
-`;
+const SSignup = styled.div``;

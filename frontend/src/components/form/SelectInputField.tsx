@@ -10,19 +10,19 @@ export interface ISelectInputField {
 }
 
 export interface IClassModel {
-  name: string
-  year: string
-  _id: string
+  name: string;
+  year: string;
+  _id: string;
 }
 
-export interface IClassModelList extends Array<IClassModel>{}
+export interface IClassModelList extends Array<IClassModel> {}
 
 const SelectInputField: React.FC<ISelectInputField> = ({
   placeholder,
   inputRef,
   errorMessage,
 }) => {
-  const [classes, setClasses] = useState<IClassModelList>()
+  const [classes, setClasses] = useState<IClassModelList>();
   useEffect(() => {
     const getClasses = async () => {
       const response = await axios.get("/classes");
@@ -32,14 +32,19 @@ const SelectInputField: React.FC<ISelectInputField> = ({
   }, []);
   return (
     <>
+      <label className="select-label">Class</label>
       <SSelectInputField {...inputRef} placeholder={placeholder}>
-        <option value="" ></option>
-        {classes && classes.map((e, i)=>{
-          return <option key={i} value={e._id}>{e.name}</option>
-        })}
+        <option value=""></option>
+        {classes &&
+          classes.map((e, i) => {
+            return (
+              <option key={i} value={e._id}>
+                {e.name}
+              </option>
+            );
+          })}
         {errorMessage}
       </SSelectInputField>
-     
     </>
   );
 };
@@ -62,6 +67,7 @@ const SSelectInputField = styled.select`
   border-bottom: 1px solid rgba(0, 0, 0, 0.42);
   background-color: transparent;
   margin: 44px 0 5px 0;
+
   &:focus {
     outline: none !important;
   }

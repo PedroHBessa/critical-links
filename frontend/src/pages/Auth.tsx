@@ -41,9 +41,9 @@ const SAuth = styled.div`
 `;
 
 const SHomeText = styled.div`
-${props => props.theme.fn.media({to: 'lg'})}{
-    display: none
-}
+  ${(props) => props.theme.fn.media({ to: "lg" })} {
+    display: none;
+  }
   & .home-text {
     position: absolute;
     top: 20%;

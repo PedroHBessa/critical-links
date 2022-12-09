@@ -6,14 +6,15 @@ import ButtonMobile from "../buttons/ButtonMobile";
 import { BUTTONS_MOBILE_PRESET } from "../buttons/presets/buttons";
 
 export interface IMenuMobile {
-  isShow: boolean
+  isShow: boolean;
 }
 
-const MenuMobile: React.FC<IMenuMobile> = ({isShow}) => {
+const MenuMobile: React.FC<IMenuMobile> = ({ isShow }) => {
   const ctx = useContext(ModalContext);
   return (
     <SMenuMobileWrapper isShow={isShow}>
-      <div className="close-btn"
+      <div
+        className="close-btn"
         onClick={() => {
           ctx.menuMobile.setMenuMobile(false);
         }}
@@ -23,9 +24,7 @@ const MenuMobile: React.FC<IMenuMobile> = ({isShow}) => {
       <SMenuMobile>
         {BUTTONS_MOBILE_PRESET &&
           BUTTONS_MOBILE_PRESET.map((e, i) => {
-            return (
-                <ButtonMobile key={i} text={e.text} type={e.type} />
-           );
+            return <ButtonMobile key={i} text={e.text} type={e.type} />;
           })}
       </SMenuMobile>
     </SMenuMobileWrapper>
@@ -41,7 +40,7 @@ const fadeIn = keyframes`
     100% {
       opacity: 1;
     }
-`
+`;
 const fadeOut = keyframes`
   0% {
       opacity: 1;
@@ -49,9 +48,9 @@ const fadeOut = keyframes`
     100% {
       opacity: 0;
     }
-`
+`;
 
-const SMenuMobileWrapper = styled.div<{isShow: boolean}>`
+const SMenuMobileWrapper = styled.div<{ isShow: boolean }>`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -59,10 +58,10 @@ const SMenuMobileWrapper = styled.div<{isShow: boolean}>`
   right: 0;
   background-color: #ffffff;
   z-index: 99;
-  opacity: ${props => props.isShow ? 1 : 0};
-    display: ${props => props.isShow ? 'block' : 'none'};
-    animation: ${fadeIn} 0.5s;
-  & .close-btn{
+  opacity: ${(props) => (props.isShow ? 1 : 0)};
+  display: ${(props) => (props.isShow ? "block" : "none")};
+  animation: ${fadeIn} 0.5s;
+  & .close-btn {
     position: absolute;
     right: 10px;
     padding: 12px;

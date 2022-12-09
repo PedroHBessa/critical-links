@@ -2,14 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 export interface IFormButton {
-  text: string
-  type: string
+  text: string;
+  type: string;
 }
 
 const FormButton: React.FC<IFormButton> = ({ text, type }) => {
-  return (
-      <SFormButton type={type} value={text} />
-  );
+  return <SFormButton type={type} value={text} />;
 };
 
 export default FormButton;
@@ -29,8 +27,7 @@ const SFormButton = styled.input`
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
-  &:hover{
+  &:hover {
     background-color: #0000ff22;
   }
 `;
-

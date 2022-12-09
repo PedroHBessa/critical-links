@@ -91,11 +91,11 @@ const SNoUsers = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    & h4{
+
+    & h4 {
       opacity: 0.25;
     }
-    
+
     & img {
       width: 10%;
       margin: 80px 0 20px 0;

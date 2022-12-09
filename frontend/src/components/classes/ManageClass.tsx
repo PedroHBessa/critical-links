@@ -4,21 +4,20 @@ import { ModalContext } from "../../context/ModalContext";
 import CancelButton from "../buttons/CancelButton";
 import ClassList from "./ClassList";
 
-export interface IManageClass {
-}
+export interface IManageClass {}
 
-const ManageClass: React.FC<IManageClass> = ({ }) => {
+const ManageClass: React.FC<IManageClass> = ({}) => {
   const { manageClass } = useContext(ModalContext);
   return (
     <>
-        <ClassList />
-        <SButtonWrapper>
-          <CancelButton
-            closeModal={manageClass.toggleManageClassModal}
-            text={"Close"}
-          />
-        </SButtonWrapper>
-        </>
+      <ClassList />
+      <SButtonWrapper>
+        <CancelButton
+          closeModal={manageClass.toggleManageClassModal}
+          text={"Close"}
+        />
+      </SButtonWrapper>
+    </>
   );
 };
 

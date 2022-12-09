@@ -4,18 +4,20 @@ import { ModalContext } from "../../context/ModalContext";
 
 export interface IButton {
   text: string;
-  type: number
+  type: number;
 }
 
 const Button: React.FC<IButton> = ({ text, type }) => {
   const ctx = useContext(ModalContext);
 
   return (
-    <SButton data-testid="button"
+    <SButton
+      data-testid="button"
       onClick={() => {
-        if(type === 0 ) return  ctx.createStudents.toggleCreateStudentModal(true);
-        if(type === 1 ) return  ctx.createClasses.toggleCreateClassModal(true);
-        if(type === 2 ) return  ctx.manageClass.toggleManageClassModal(true);
+        if (type === 0)
+          return ctx.createStudents.toggleCreateStudentModal(true);
+        if (type === 1) return ctx.createClasses.toggleCreateClassModal(true);
+        if (type === 2) return ctx.manageClass.toggleManageClassModal(true);
       }}
     >
       {text}
@@ -40,7 +42,7 @@ const SButton = styled.button`
   border-radius: 8px;
   margin: 0 6.5px;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: #4e87f8d0;
   }
 `;

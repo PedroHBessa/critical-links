@@ -8,26 +8,25 @@ import { ProtectedRoute } from "./utils/routes/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 
 function App() {
-  
-  return ( 
+  return (
     <AuthProvider>
-    <AppThemeProvider>
-      <AuthProvider>
-        <Routes>
-          <Route path="/auth" element={<Auth />} />
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-        <Toaster />
-      </AuthProvider>
-    </AppThemeProvider>
-    </AuthProvider> 
+      <AppThemeProvider>
+        <AuthProvider>
+          <Routes>
+            <Route path="/auth" element={<Auth />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+          <Toaster />
+        </AuthProvider>
+      </AppThemeProvider>
+    </AuthProvider>
   );
 }
 

@@ -10,14 +10,14 @@ export interface IButtonMobile {
 const ButtonMobile: React.FC<IButtonMobile> = ({ text, type }) => {
   const ctx = useContext(ModalContext);
   const toggleModalMobile = () => {
-    ctx.menuMobile.setMenuMobile(false)
+    ctx.menuMobile.setMenuMobile(false);
     if (type === 0) return ctx.createStudents.toggleCreateStudentModal(true);
     if (type === 1) return ctx.createClasses.toggleCreateClassModal(true);
     if (type === 2) return ctx.manageClass.toggleManageClassModal(true);
   };
   return (
     <SButtonMobile
-    data-testid='btn-mobile'
+      data-testid="btn-mobile"
       onClick={() => {
         toggleModalMobile();
       }}

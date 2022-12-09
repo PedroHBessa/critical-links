@@ -80,12 +80,12 @@ const SAuthTemplate = styled.div`
   padding: 32px;
   background-color: #ffffffe7;
   border-radius: 10px;
-  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
-    0px 24px 38px 3px #b8b8b84c, 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
-    ${props => props.theme.fn.media({to: 'lg'})}{
-      left: 50%;
-}
-   
+  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px #b8b8b84c,
+    0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+  ${(props) => props.theme.fn.media({ to: "lg" })} {
+    left: 50%;
+  }
+
   & .title {
     font-family: "Nunito Sans";
     font-style: normal;

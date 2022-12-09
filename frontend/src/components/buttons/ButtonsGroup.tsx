@@ -19,6 +19,7 @@ const ButtonsGroup: React.FC<IButtonsGroup> = () => {
 export default ButtonsGroup;
 
 const SButtonsGroup = styled.div`
-${props => props.theme.fn.media({to: 'lg'})}{
+  ${(props) => props.theme.fn.media({ to: "lg" })} {
     display: none;
-  }`
+  }
+`;

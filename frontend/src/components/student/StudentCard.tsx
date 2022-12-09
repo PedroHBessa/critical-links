@@ -7,17 +7,22 @@ import TextContent from "./TextContent";
 import { shortString } from "../../utils/functions/shortString";
 
 export interface IStudentCard {
-    fullname: string | undefined
-    email: string | undefined
-    studentId: string
-    id: string
+  fullname: string | undefined;
+  email: string | undefined;
+  studentId: string;
+  id: string;
 }
 
-const StudentCard: React.FC<IStudentCard> = ({fullname, email, studentId, id}) => {
+const StudentCard: React.FC<IStudentCard> = ({
+  fullname,
+  email,
+  studentId,
+  id,
+}) => {
   const ctx = useContext(ModalContext);
   return (
     <SStudentCard>
-      <Avatar email={email}/>
+      <Avatar email={email} />
       <TextContent
         fullname={shortString(fullname)}
         email={shortString(email)}
@@ -55,7 +60,7 @@ const SStudentCard = styled.div`
   line-height: 160%;
   letter-spacing: 0.15px;
   color: rgba(0, 0, 0, 0.87);
-  ${props => props.theme.fn.media({to: 'sm'})}{
+  ${(props) => props.theme.fn.media({ to: "sm" })} {
     margin: 5px 0px;
   }
 `;

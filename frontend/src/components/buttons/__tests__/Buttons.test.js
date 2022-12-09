@@ -6,7 +6,6 @@ import ButtonsGroup from "../ButtonsGroup";
 import { AppThemeProvider, theme } from "../../../theme/AppThemeProvider";
 import CancelButton from "../CancelButton";
 
-
 describe("Tests for the buttons", () => {
   it("should load the main button", async () => {
     const { getByTestId } = render(<Button />);
@@ -32,15 +31,10 @@ describe("Tests for the buttons", () => {
 
     expect(data).toBeDefined();
   });
-  
 });
 it("should load cancel button", async () => {
-    const { getByTestId } = render(
-      <CancelButton />
-    );
-    const data = getByTestId("cancel-btn");
+  const { getByTestId } = render(<CancelButton />);
+  const data = getByTestId("cancel-btn");
 
-    expect(data).toBeDefined();
-  });
-  
-
+  expect(data).toBeDefined();
+});

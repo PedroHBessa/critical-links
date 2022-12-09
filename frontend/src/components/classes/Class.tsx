@@ -4,14 +4,13 @@ import { ModalContext } from "../../context/ModalContext";
 import ClassActions from "../classes/ClassesActions";
 
 export interface IClass {
-  name: string
-  id: string
+  name: string;
+  id: string;
 }
 
-const Class: React.FC<IClass> = ({name, id}) => {
+const Class: React.FC<IClass> = ({ name, id }) => {
   const ctx = useContext(ModalContext);
 
-  
   return (
     <SClass>
       <span>{name}</span>

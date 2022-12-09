@@ -8,18 +8,22 @@ export interface IInputField {
   placeholder: string;
   inputRef: Partial<UseFormRegister<FieldValues>>;
   errorMessage: JSX.Element;
-  type?: Type
+  type?: Type;
 }
 
 const InputField: React.FC<IInputField> = ({
   placeholder,
   inputRef,
   errorMessage,
-  type
+  type,
 }) => {
   return (
     <>
-      <SInputField {...inputRef} type={type ? type : 'text'} placeholder={placeholder} />
+      <SInputField
+        {...inputRef}
+        type={type ? type : "text"}
+        placeholder={placeholder}
+      />
       {errorMessage}
     </>
   );

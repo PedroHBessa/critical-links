@@ -20,13 +20,14 @@ function MainLayout() {
   return (
     <ModalContext.Provider value={ctx}>
       <SMainContent>
-        
         <SHeader>
-          <div data-testid="main-title" className="title">Student Manager</div>
+          <div data-testid="main-title" className="title">
+            Student Manager
+          </div>
           <ButtonsGroup />
           <ButtonsGroupMobile />
         </SHeader>
-        
+
         <StudentSection />
 
         <ModalContent
@@ -60,7 +61,9 @@ function MainLayout() {
           content={<EditClassForm />}
         />
         <ModalContent
-          modal={ctx.deleteStudentConfirmation.deleteStudentConfirmationModalIsOpen}
+          modal={
+            ctx.deleteStudentConfirmation.deleteStudentConfirmationModalIsOpen
+          }
           isModalOpen={
             ctx.deleteStudentConfirmation.toggleDeleteStudentConfirmationModal
           }
@@ -92,10 +95,10 @@ const SMainContent = styled.main`
   height: 100%;
   min-height: 100vh;
   margin: 0 38px;
-  ${props => props.theme.fn.media({from: 'md', to: 'lg'})}{
+  ${(props) => props.theme.fn.media({ from: "md", to: "lg" })} {
     margin: 0 38px;
   }
-  ${props => props.theme.fn.media({to: 'md'})}{
+  ${(props) => props.theme.fn.media({ to: "md" })} {
     margin: 0 0;
   }
 
@@ -107,8 +110,8 @@ const SMainContent = styled.main`
     line-height: 25px;
     color: #5b5b5b;
     ${(props) => props.theme.fn.media({ to: "md" })} {
-    margin: 0 20px;
-  }
+      margin: 0 20px;
+    }
   }
 `;
 

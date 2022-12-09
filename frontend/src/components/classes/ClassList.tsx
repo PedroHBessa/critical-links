@@ -6,12 +6,12 @@ import Class from "./Class";
 export interface IClassListProps {}
 
 export interface IClassModel {
-  name: string
-  year: string
-  _id: string
+  name: string;
+  year: string;
+  _id: string;
 }
 
-export interface IClassModelList extends Array<IClassModel>{}
+export interface IClassModelList extends Array<IClassModel> {}
 
 const ClassList: React.FC<IClassListProps> = ({}) => {
   const [classes, setClasses] = useState<IClassModelList | undefined>();
@@ -25,9 +25,10 @@ const ClassList: React.FC<IClassListProps> = ({}) => {
   return (
     <SClassList>
       <span className="title">Class name</span>
-      {classes && classes.map((e, i) => {
-        return <Class key={i} name={e.name} id={e._id} />
-      })}
+      {classes &&
+        classes.map((e, i) => {
+          return <Class key={i} name={e.name} id={e._id} />;
+        })}
     </SClassList>
   );
 };
@@ -35,10 +36,10 @@ const ClassList: React.FC<IClassListProps> = ({}) => {
 export default ClassList;
 
 const SClassList = styled.div`
-& .title{
-  display: block;
-  margin-bottom: 3px;
-}
+  & .title {
+    display: block;
+    margin-bottom: 3px;
+  }
   & span {
     font-family: "Open Sans";
     font-style: normal;

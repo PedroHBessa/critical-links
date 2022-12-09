@@ -26,7 +26,6 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
       } catch (error: any) {
         errorFeedback(`something went wrong: ${error.message}`);
       }
-     
     };
     getStudent();
   }, []);
@@ -45,18 +44,15 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
   });
 
   const updateStudent = (data: any) => {
-    
     try {
-      
       axios.patch(`/students/${editStudent.editStudentId}`, data);
-      loading.setLoading(true)
+      loading.setLoading(true);
       editStudent.toggleEditStudentModal(false);
-      successFeedback("Student updated successfully")
+      successFeedback("Student updated successfully");
     } catch (error: any) {
       errorFeedback(`something went wrong: ${error.message}`);
-      loading.setLoading(false)
+      loading.setLoading(false);
     }
-   
   };
 
   return (
@@ -131,11 +127,25 @@ const EditStudentForm: React.FC<IEditStudentForm> = () => {
 export default EditStudentForm;
 
 const SEditStudentForm = styled.form`
- & p {
+  & p {
     font-family: "Roboto";
     font-style: normal;
     font-size: 13px;
     color: #ff0000;
+  }
+
+  & .select-label {
+    position: relative;
+    top: 40px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    color: rgba(0, 0, 0, 0.6);
   }
 `;
 

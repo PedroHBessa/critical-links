@@ -17,14 +17,12 @@ const ButtonsGroupMobile: React.FC<IButtonsGroupMobile> = () => {
         }}
         src={require("../../assets/icons/mb-icon.png")}
       />
-      <MenuMobile isShow={ctx.menuMobile.menuMobile} /> 
+      <MenuMobile isShow={ctx.menuMobile.menuMobile} />
     </SButtonsGroupMobile>
   );
 };
 
 export default ButtonsGroupMobile;
-
-
 
 const SButtonsGroupMobile = styled.div`
   display: none;

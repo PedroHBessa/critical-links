@@ -24,20 +24,16 @@ const CreateClassForm: React.FC<ICreateClassForm> = () => {
   const createClass = async (data: any) => {
     try {
       await axios.post("/classes", data);
-      loading.setLoading(true)
+      loading.setLoading(true);
       createClasses.toggleCreateClassModal(false);
-      successFeedback("class created successfully")
+      successFeedback("class created successfully");
     } catch (error: any) {
       errorFeedback(`something went wrong: ${error.message}`);
-      loading.setLoading(false)
+      loading.setLoading(false);
     }
-   
-    
   };
   return (
-    <SCreateClassForm
-      onSubmit={handleSubmit((data) => createClass(data))}
-    >
+    <SCreateClassForm onSubmit={handleSubmit((data) => createClass(data))}>
       <InputField
         inputRef={{
           ...register("name", { required: "This field is required." }),
@@ -54,10 +50,13 @@ const CreateClassForm: React.FC<ICreateClassForm> = () => {
       />
       <InputField
         inputRef={{
-          ...register("year", { required: "This field is required.", pattern: {
-            value: /^[0-9]{1,2}$/,
-            message: "Should have up to 2 digits (only numbers)",
-          }, }),
+          ...register("year", {
+            required: "This field is required.",
+            pattern: {
+              value: /^[0-9]{1,2}$/,
+              message: "Should have up to 2 digits (only numbers)",
+            },
+          }),
         }}
         errorMessage={<ErrorMessage errors={errors} name="year" as="p" />}
         placeholder="Year"
@@ -77,12 +76,13 @@ const CreateClassForm: React.FC<ICreateClassForm> = () => {
 export default CreateClassForm;
 
 const SCreateClassForm = styled.form`
- & p {
+  & p {
     font-family: "Roboto";
     font-style: normal;
     font-size: 13px;
     color: #ff0000;
-  }`;
+  }
+`;
 
 const SButtonWrapper = styled.div`
   display: flex;

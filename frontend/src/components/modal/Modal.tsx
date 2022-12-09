@@ -27,26 +27,25 @@ const fadeIn = keyframes`
     100% {
       opacity: 1;
     }
-`
+`;
 
-const SModal = styled.div<{show: boolean}>`
-    background-color: #00000094;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    height: 100%;
-    opacity: 0;
-    opacity: ${props => props.show ? 1 : 0};
-    display: ${props => props.show ? 'block' : 'none'};
-    animation: ${fadeIn} 0.5s;
+const SModal = styled.div<{ show: boolean }>`
+  background-color: #00000094;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  opacity: 0;
+  opacity: ${(props) => (props.show ? 1 : 0)};
+  display: ${(props) => (props.show ? "block" : "none")};
+  animation: ${fadeIn} 0.5s;
 `;
 
 const SModalWrapper = styled.div`
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;

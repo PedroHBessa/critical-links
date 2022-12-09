@@ -13,19 +13,16 @@ export interface IEditClassForm {}
 
 const EditClassForm: React.FC<IEditClassForm> = () => {
   const [data, setData] = useState();
-  const {editClass, loading} = useContext(ModalContext)
+  const { editClass, loading } = useContext(ModalContext);
 
   useEffect(() => {
     const getClass = async () => {
       try {
-        const response = await axios.get(
-          `/classes/${editClass.editClassId}`
-        );
+        const response = await axios.get(`/classes/${editClass.editClassId}`);
         setData(response.data);
       } catch (error: any) {
         errorFeedback(`something went wrong: ${error.message}`);
       }
-      
     };
     getClass();
   }, []);
@@ -38,7 +35,7 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
     register,
     formState: { errors },
     handleSubmit,
-    reset
+    reset,
   } = useForm({
     defaultValues: data,
   });
@@ -46,20 +43,18 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
   const updateClass = (data: any) => {
     try {
       axios.patch(`/classes/${editClass.editClassId}`, data);
-      loading.setLoading(true)
+      loading.setLoading(true);
       editClass.toggleEditClassModal(false);
-      successFeedback("Class updated successfully")
+      successFeedback("Class updated successfully");
     } catch (error: any) {
       errorFeedback(`something went wrong: ${error.message}`);
-      loading.setLoading(false)
+      loading.setLoading(false);
     }
-    ;
   };
-  
+
   return (
     <SEditClassForm onSubmit={handleSubmit((data) => updateClass(data))}>
-        <InputField
-        
+      <InputField
         inputRef={{
           ...register("name", { required: "This field is required." }),
         }}
@@ -74,19 +69,24 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
         placeholder="Name"
       />
       <InputField
-      
         inputRef={{
-          ...register("year", { required: "This field is required.", pattern: {
-            value: /^[0-9]{1,2}$/,
-            message: "Should have up to 2 digits (only numbers)",
-          }, }),
+          ...register("year", {
+            required: "This field is required.",
+            pattern: {
+              value: /^[0-9]{1,2}$/,
+              message: "Should have up to 2 digits (only numbers)",
+            },
+          }),
         }}
         errorMessage={<ErrorMessage errors={errors} name="year" as="p" />}
         placeholder="Year"
       />
 
       <SButtonWrapper>
-        <CancelButton closeModal={editClass.toggleEditClassModal} text={"Cancel"} />
+        <CancelButton
+          closeModal={editClass.toggleEditClassModal}
+          text={"Cancel"}
+        />
         <FormButton text={"Edit"} type={"submit"} />
       </SButtonWrapper>
     </SEditClassForm>
@@ -96,12 +96,13 @@ const EditClassForm: React.FC<IEditClassForm> = () => {
 export default EditClassForm;
 
 const SEditClassForm = styled.form`
- & p {
+  & p {
     font-family: "Roboto";
     font-style: normal;
     font-size: 13px;
     color: #ff0000;
-  }`;
+  }
+`;
 
 const SButtonWrapper = styled.div`
   display: flex;

@@ -1,48 +1,48 @@
-import React, { useEffect } from 'react'
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import WebFont from 'webfontloader'
+import React, { useEffect } from "react";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import WebFont from "webfontloader";
 
-export type ThemeSize = 'xs' | 'sm' | 'md' | 'lg'
+export type ThemeSize = "xs" | "sm" | "md" | "lg";
 
 export type ThemeFunctions = {
   // makes a media query
   media: (args: {
-    from?: ThemeSize | number
-    to?: ThemeSize | number
-  }) => string
-}
+    from?: ThemeSize | number;
+    to?: ThemeSize | number;
+  }) => string;
+};
 
 export interface IAppTheme {
-  primaryColor: string
+  primaryColor: string;
 
   text: {
-    nav: string
-    navHighlight: string
-    error: string
-    body: string
-    greenScreen: string
-  }
+    nav: string;
+    navHighlight: string;
+    error: string;
+    body: string;
+    greenScreen: string;
+  };
 
   background: {
-    navbar: string
-  }
+    navbar: string;
+  };
 
   measurements: {
-    mobileFrameContentWidth: number
-  }
+    mobileFrameContentWidth: number;
+  };
 
   screenSizes: {
-    xs: number
-    sm: number
-    md: number
-    lg: number
-    xl: number
-  }
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+    xl: number;
+  };
 
-  fn: ThemeFunctions
+  fn: ThemeFunctions;
 }
 
-export type ThemeFn<T = string> = (theme: IAppTheme) => T
+export type ThemeFn<T = string> = (theme: IAppTheme) => T;
 
 const GlobalStyle = createGlobalStyle`
   overflow-x: hidden;
@@ -92,23 +92,23 @@ a {
     font-family: 'Open Sans';
     src: url("/fonts/OpenSans-Regular.ttf") format('truetype');
   }
-`
+`;
 
 interface IAppThemeProviderProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export const theme: IAppTheme = {
-  primaryColor: '#EF631C',
+  primaryColor: "#EF631C",
   text: {
-    nav: '#686a6b',
-    navHighlight: '#fff',
-    error: '#F35252',
-    body: '#fff',
-    greenScreen: '#3ae645',
+    nav: "#686a6b",
+    navHighlight: "#fff",
+    error: "#F35252",
+    body: "#fff",
+    greenScreen: "#3ae645",
   },
   background: {
-    navbar: '#000000',
+    navbar: "#000000",
   },
   screenSizes: {
     xs: 310,
@@ -121,54 +121,52 @@ export const theme: IAppTheme = {
     mobileFrameContentWidth: 240,
   },
   get fn(): ThemeFunctions {
-    const { screenSizes } = this
+    const { screenSizes } = this;
 
     return {
       media: ({ from, to }) => {
         const derived = {
           get fromSize() {
-            if (typeof from === 'string') return screenSizes[from]
-            return from
+            if (typeof from === "string") return screenSizes[from];
+            return from;
           },
           get toSize() {
-            if (typeof to === 'string') return screenSizes[to]
-            return to
+            if (typeof to === "string") return screenSizes[to];
+            return to;
           },
-        }
+        };
 
-        const { fromSize, toSize } = derived
-        const parts: string[] = []
+        const { fromSize, toSize } = derived;
+        const parts: string[] = [];
 
-        if (fromSize) parts.push(`(min-width: ${fromSize}px)`)
-        if (toSize) parts.push(`(max-width: ${toSize}px)`)
+        if (fromSize) parts.push(`(min-width: ${fromSize}px)`);
+        if (toSize) parts.push(`(max-width: ${toSize}px)`);
 
-        if (parts.length === 0) throw new Error(`Media missing [from, to]`)
+        if (parts.length === 0) throw new Error(`Media missing [from, to]`);
 
-        return `@media ${parts.join(' and ')}`
+        return `@media ${parts.join(" and ")}`;
       },
-    }
+    };
   },
-}
+};
 
-export const AppThemeProvider: React.FC<IAppThemeProviderProps> = ({ children }) => {
+export const AppThemeProvider: React.FC<IAppThemeProviderProps> = ({
+  children,
+}) => {
   useEffect(() => {
     WebFont.load({
       google: {
-        families: [
-          'Nunito Sans',
-          'Roboto',
-          'Open Sans'
-        ],
+        families: ["Nunito Sans", "Roboto", "Open Sans"],
       },
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       {children}
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default AppThemeProvider
+export default AppThemeProvider;

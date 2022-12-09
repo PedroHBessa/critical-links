@@ -2,13 +2,20 @@ import React from "react";
 import styled from "styled-components";
 
 export interface ICancelButton {
-    closeModal: (arg: boolean) => void
-    text: string
+  closeModal: (arg: boolean) => void;
+  text: string;
 }
 
-const CancelButton: React.FC<ICancelButton> = ({closeModal, text}) => {
+const CancelButton: React.FC<ICancelButton> = ({ closeModal, text }) => {
   return (
-      <SCancelButton data-testid="cancel-btn" onClick={()=>{closeModal(false)}} type={"reset"} value={text} />
+    <SCancelButton
+      data-testid="cancel-btn"
+      onClick={() => {
+        closeModal(false);
+      }}
+      type={"reset"}
+      value={text}
+    />
   );
 };
 
@@ -28,9 +35,8 @@ const SCancelButton = styled.input`
   cursor: pointer;
   transition: background-color 0.3s;
   padding: 8px 16px;
-    margin: 8px 0 0 0;
-  &:hover{
+  margin: 8px 0 0 0;
+  &:hover {
     background-color: #0000ff22;
   }
 `;
-

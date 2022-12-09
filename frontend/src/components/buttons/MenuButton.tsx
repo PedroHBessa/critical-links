@@ -3,20 +3,24 @@ import styled from "styled-components";
 import { AuthContext } from "../../context/AuthContext";
 import { successFeedback } from "../../utils/functions/feedback";
 
-
 export interface IMenuButton {
   text: string;
 }
 
 const MenuButton: React.FC<IMenuButton> = ({ text }) => {
-    const ctx = useContext(AuthContext);
-    const logout = () => {
-        ctx.logout()
-        successFeedback("user logged out successfully", false);
-    }
+  const ctx = useContext(AuthContext);
+  const logout = () => {
+    ctx.logout();
+    successFeedback("user logged out successfully", false);
+  };
   return (
-    <SMenuButton onClick={()=>{logout()}} data-testid="MenuButton">
-       {text}
+    <SMenuButton
+      onClick={() => {
+        logout();
+      }}
+      data-testid="MenuButton"
+    >
+      {text}
     </SMenuButton>
   );
 };
@@ -39,10 +43,10 @@ const SMenuButton = styled.button`
   margin: 10px 40px;
   cursor: pointer;
   transition: background-color 0.3s;
-  ${(props) => props.theme.fn.media({  to: "sm" })} {
+  ${(props) => props.theme.fn.media({ to: "sm" })} {
     margin: 10px 20px;
-    }
-  &:hover{
+  }
+  &:hover {
     background-color: #ffffff4b;
   }
 `;

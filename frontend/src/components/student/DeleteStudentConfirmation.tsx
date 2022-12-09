@@ -14,12 +14,11 @@ const DeleteStudentConfirmation: React.FC<IDeleteStudentConfirmation> = ({
 }) => {
   const { deleteStudentConfirmation, loading } = useContext(ModalContext);
   const deleteStudent = async (id: string) => {
-    
     try {
-      loading.setLoading(true)
+      loading.setLoading(true);
       await axios.delete(`students/${id}`);
       deleteStudentConfirmation.toggleDeleteStudentConfirmationModal(false);
-      
+
       successFeedback("Student deleted successfully");
     } catch (error: any) {
       errorFeedback(`something went wrong: ${error.message}`);
