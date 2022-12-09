@@ -25,6 +25,12 @@ Execute o comando
   docker-compose up
 ```
 
+Abra o navegador e acesse
+
+```bash
+  http://localhost:8080/
+```
+
 ### Como rodar o projeto backend com Docker
 
 Clone o projeto
