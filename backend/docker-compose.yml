@@ -11,20 +11,22 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+    links:
+      - mongo
     ports:
       - 3000:3000
     command: npm run start:dev
-
-  mongo:
-    container_name: mongo
-    image: 'mongo:5'
-    ports:
-      - '27017:27017'
-    volumes:
-      - mongo_data:/data/db
     environment:
       - MONGO_DATA_DIR=/data/db
-      - MONGO_URL=mongodb://mongo/nest
+      - MONGO_URL=mongodb://mongo:27017/nest
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+    
 
 volumes:
   mongo_data:
