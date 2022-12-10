@@ -76,8 +76,8 @@ const CreateStudentForm: React.FC<ICreateStudentForm> = () => {
           ...register("student_id", {
             required: "This field is required",
             pattern: {
-              value: /^[0-9]{6,6}$/,
-              message: "Should have 6 digits (only numbers)",
+              value: /^[0-9]{1,6}$/,
+              message: "Should have up to 6 digits (only numbers)",
             },
           }),
         }}

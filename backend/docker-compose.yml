@@ -24,6 +24,7 @@ services:
       - mongo_data:/data/db
     environment:
       - MONGO_DATA_DIR=/data/db
+      - MONGO_URL=mongodb://mongo/nest
 
 volumes:
   mongo_data:

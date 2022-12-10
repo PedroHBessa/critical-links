@@ -6,6 +6,7 @@ import { StudentsModule } from './students/students.module';
 import { ClassesModule } from './classes/classes.module';
 import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { MongooseModule } from '@nestjs/mongoose';
     StudentsModule,
     ClassesModule,
     UsersModule,
-    MongooseModule.forRoot('mongodb://mongo:27017/app_development'),
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGO_URL),
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -3,15 +3,17 @@
 
 Desafio técnico
 
-## Iniciando com Docker
-
-### Como rodar o projeto frontend com Docker
+## Início
 
 Clone o projeto
 
 ```bash
   git clone https://github.com/PedroHBessa/critical-links.git
 ```
+
+## Iniciando com Docker (Docker Desktop must be running)
+
+### Como rodar o projeto frontend com Docker
 
 Entre no diretório do projeto
 
@@ -25,13 +27,13 @@ Execute o comando
   docker-compose up
 ```
 
-### Como rodar o projeto backend com Docker
-
-Clone o projeto
+Abra o navegador e acesse
 
 ```bash
-  git clone https://github.com/PedroHBessa/critical-links.git
+  http://localhost:8080/
 ```
+
+### Como rodar o projeto backend com Docker
 
 Entre no diretório do projeto
 
@@ -48,12 +50,6 @@ Execute o comando
 ## Iniciando sem Docker
 
 ### Como rodar o projeto frontend sem Docker
-
-Clone o projeto
-
-```bash
-  git clone https://github.com/PedroHBessa/critical-links.git
-```
 
 Entre no diretório do projeto
 
@@ -76,11 +72,6 @@ Inicie o servidor
 
 ### Como rodar o projeto backend sem Docker
 
-Clone o projeto
-
-```bash
-  git clone https://github.com/PedroHBessa/critical-links.git
-```
 
 Entre no diretório do projeto
 
