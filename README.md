@@ -11,7 +11,7 @@ Clone o projeto
   git clone https://github.com/PedroHBessa/critical-links.git
 ```
 
-## Iniciando com Docker
+## Iniciando com Docker (Docker Desktop must be running)
 
 ### Como rodar o projeto frontend com Docker
 
